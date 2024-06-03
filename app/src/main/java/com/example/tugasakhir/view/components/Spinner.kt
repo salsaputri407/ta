@@ -1,0 +1,104 @@
+package com.example.tugasakhir.view.components
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.tugasakhir.R
+import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.TugasAkhirTheme
+
+@Composable
+fun Spinner(
+    image: Int,
+    title: String,
+    desc: String,
+    modifier: Modifier =  Modifier,
+){
+    Row (
+
+        modifier= modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colorScheme.background)
+            .padding(18.dp)
+    ){
+        Surface (
+            modifier= modifier
+                .clip(RoundedCornerShape(8.dp, 0.dp, 0.dp, 8.dp))
+                .background(color = BlueColor500)
+                .padding(vertical = 4.dp, horizontal = 15.dp)
+        ){
+            Image(
+                painter = painterResource(id = image),
+                contentDescription = "spinner",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(90.dp)
+                    .padding(4.dp)
+            )
+
+        }
+        Column {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                ),
+                modifier =  Modifier
+                    .padding(top= 17.dp, start = 10.dp),
+            )
+            Text(text = desc,
+                style = MaterialTheme.typography.bodySmall.copy(
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.secondary
+                ),
+                modifier= modifier
+                    .width(215.dp)
+                    .padding(top = 2.dp, start = 10.dp)
+            )
+
+        }
+        Icon(
+            imageVector = Icons.Default.KeyboardArrowRight ,
+            contentDescription = "right button",
+            tint = BlueColor500,
+            modifier= Modifier
+                .padding(start = 2.dp)
+                .align(Alignment.CenterVertically)
+        )
+    }
+}
+
+@Composable
+@Preview()
+fun SpinnerPreview() {
+    TugasAkhirTheme{
+        Spinner(
+            image = R.drawable.spinner,
+            title = "Spin the Wheel",
+            desc= "Dapatkan tambahan waktu bermain dengan menukarkan point",
+        )
+    }
+}
