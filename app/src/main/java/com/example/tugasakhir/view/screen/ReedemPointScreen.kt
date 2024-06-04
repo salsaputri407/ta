@@ -1,4 +1,4 @@
-package com.example.tugasakhir.view.screen.reedem
+package com.example.tugasakhir.view.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

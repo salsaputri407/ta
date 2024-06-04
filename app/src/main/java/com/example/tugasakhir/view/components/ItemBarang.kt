@@ -20,38 +20,35 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.tugasakhir.R
-import com.example.tugasakhir.model.Sepeda
+import com.example.tugasakhir.model.Barang
 import com.example.tugasakhir.ui.theme.BabyBlueColor500
-import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 
 @Composable
-fun ItemSepeda(
-    sepeda: Sepeda,
+fun ItemBarang(
     modifier: Modifier = Modifier,
-){
-    Column (
+    barang: Barang,
+    navigateToDetailBarangScreen : (Long, Int, String) -> Unit
+) {
+    Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
             .background(color = MaterialTheme.colorScheme.background)
             .padding(5.dp)
-    )
-    {
+    ) {
         Image(
-            painter = painterResource(id = sepeda.image),
+            painter = painterResource(id = barang.image),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = modifier
                 .size(175.dp)
         )
         Button(
-            onClick = {},
-            shape= RoundedCornerShape(8.dp),
+            onClick = { navigateToDetailBarangScreen(barang.id, barang.image, barang.title) },
+            shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(BabyBlueColor500),
             modifier = modifier
                 .width(150.dp)
@@ -59,20 +56,13 @@ fun ItemSepeda(
                 .padding(10.dp)
         ) {
             Text(
-                text = sepeda.title,
+                text = barang.title,
                 maxLines = 1,
-                style =  MaterialTheme.typography.titleSmall.copy(
-                    fontWeight = FontWeight.Medium),
+                style = MaterialTheme.typography.titleSmall.copy(
+                    fontWeight = FontWeight.Medium
+                ),
                 fontSize = 14.sp
             )
         }
-    }
-}
-
-@Composable
-@Preview(showBackground = true)
-fun ItemSepedaPreview() {
-    TugasAkhirTheme{
-        ItemSepeda(sepeda = Sepeda(1, R.drawable.sepeda1, "Biru", ))
     }
 }

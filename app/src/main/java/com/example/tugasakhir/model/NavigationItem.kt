@@ -1,6 +1,7 @@
-package com.example.tugasakhir.navigation
+package com.example.tugasakhir.model
 
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.tugasakhir.navigation.Screen
 
 data class NavigationItem (
     val title: String,

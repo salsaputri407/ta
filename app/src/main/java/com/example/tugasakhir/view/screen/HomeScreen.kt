@@ -1,4 +1,4 @@
-package com.example.tugasakhir.view.screen.home
+package com.example.tugasakhir.view.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -29,8 +29,7 @@ import com.example.tugasakhir.view.components.Spinner
 
 
 @Composable
-fun HomeScreen(
-){
+fun HomeScreen(){
     HomeContent()
 }
 

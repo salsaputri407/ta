@@ -1,4 +1,4 @@
-package com.example.tugasakhir.view.screen.badge
+package com.example.tugasakhir.view.screen
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke

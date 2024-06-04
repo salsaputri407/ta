@@ -1,4 +1,4 @@
-package com.example.tugasakhir.view.screen.detail
+package com.example.tugasakhir.view.screen
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
@@ -46,8 +46,17 @@ import com.example.tugasakhir.view.components.ActionButton
 
 @Composable
 fun DetailBarangScreen(
-
-){}
+    barangId: Long?,
+    image: Int?,
+    title: String?,
+){
+    DetailBarangContent(
+        image = image ?: R.drawable.sepeda1,
+        title = title ?: "Biru",
+        onBackClick = {},
+        onAddToCart = {}
+    )
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -203,7 +212,6 @@ fun DetailBarangContent(
         }
     }
 }
-
 
 //@Preview(showBackground = true)
 //@Composable
