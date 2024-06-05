@@ -34,6 +34,7 @@ import com.example.tugasakhir.view.screen.CartItemContent
 import com.example.tugasakhir.view.screen.CartItemScreen
 import com.example.tugasakhir.view.screen.DetailBarangScreen
 import com.example.tugasakhir.view.screen.DetailCheckContent
+import com.example.tugasakhir.view.screen.WheelspinScreen
 
 @Composable
 fun App(
@@ -48,7 +49,8 @@ fun App(
             if (currentRoute != Screen.Detail.route &&
                 currentRoute != Screen.Cart.route &&
                 currentRoute != Screen.Checkout.route &&
-                currentRoute != Screen.Reedem.route
+                currentRoute != Screen.Reedem.route &&
+                currentRoute != Screen.Spinner.route
             ) {
                 BottomBar(navController)
             }
@@ -61,7 +63,9 @@ fun App(
             modifier = Modifier.padding(innerPading)
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    navigateToWheelspinScreen = { navController.navigate(Screen.Spinner.route) }
+                )
             }
             composable(Screen.Item.route) {
                 ItemScreen(
@@ -94,6 +98,9 @@ fun App(
             }
             composable(Screen.Checkout.route) {
                 DetailCheckContent()
+            }
+            composable(Screen.Spinner.route) {
+                WheelspinScreen()
             }
         }
     }

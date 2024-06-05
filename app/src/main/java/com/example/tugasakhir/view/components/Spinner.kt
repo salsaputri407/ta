@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -31,13 +32,13 @@ import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 
 @Composable
 fun Spinner(
+    modifier: Modifier =  Modifier,
     image: Int,
     title: String,
     desc: String,
-    modifier: Modifier =  Modifier,
+    navigateToWheelspinScreen: () -> Unit = {}
 ){
     Row (
-
         modifier= modifier
             .fillMaxWidth()
             .background(color = MaterialTheme.colorScheme.background)
@@ -80,14 +81,18 @@ fun Spinner(
             )
 
         }
-        Icon(
-            imageVector = Icons.Default.KeyboardArrowRight ,
-            contentDescription = "right button",
-            tint = BlueColor500,
+        IconButton(
             modifier= Modifier
                 .padding(start = 2.dp)
-                .align(Alignment.CenterVertically)
-        )
+                .align(Alignment.CenterVertically),
+            onClick = navigateToWheelspinScreen
+        ) {
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowRight ,
+                contentDescription = "right button",
+                tint = BlueColor500,
+            )
+        }
     }
 }
 

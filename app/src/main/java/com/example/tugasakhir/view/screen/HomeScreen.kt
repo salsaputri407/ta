@@ -29,8 +29,12 @@ import com.example.tugasakhir.view.components.Spinner
 
 
 @Composable
-fun HomeScreen(){
-    HomeContent()
+fun HomeScreen(
+    navigateToWheelspinScreen: () -> Unit = {}
+){
+    HomeContent(
+        navigateToWheelspinScreen = navigateToWheelspinScreen
+    )
 }
 
 @Composable
@@ -67,6 +71,7 @@ fun Menu(
 
 @Composable
 fun HomeContent(
+    navigateToWheelspinScreen: () -> Unit = {}
 ){
     Column (
         modifier = Modifier
@@ -80,7 +85,9 @@ fun HomeContent(
         Spinner(
             image = R.drawable.spinner,
             title = "Spin the Wheel",
-            desc = "Dapatkan tambahan waktu bermain dengan menukarkan point" )
+            desc = "Dapatkan tambahan waktu bermain dengan menukarkan point",
+            navigateToWheelspinScreen = navigateToWheelspinScreen
+        )
     }
 }
 
