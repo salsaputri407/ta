@@ -31,36 +31,14 @@ import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.ActionButton
 import com.example.tugasakhir.view.components.ItemCart
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun CartItemContent(
-    modifier: Modifier = Modifier
+fun CartItemScreen(
+    modifier: Modifier = Modifier,
+    navigateToDetailCheckoutScreen: () -> Unit = {}
 ) {
-    Column {
-        TopAppBar(
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.background,
-                navigationIconContentColor = MaterialTheme.colorScheme.primary
-            ),
-            navigationIcon = {
-                Icon(
-                    modifier = modifier
-                        .padding(start = 15.dp)
-                        .clickable { },
-                    imageVector = Icons.Filled.KeyboardArrowLeft,
-                    tint = BlueColor500,
-                    contentDescription = "Left Navigation Icon"
-                )
-            },
-            title = {
-                Text(
-                    text = stringResource(R.string.screen_keranjang),
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 14.sp,
-                    )
-                )
-            })
+    Column(modifier = modifier) {
+        TopAppBar()
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
@@ -73,12 +51,7 @@ fun CartItemContent(
                 .verticalScroll(rememberScrollState())
                 .weight(1f)
         ) {
-            ItemCart(
-                image = R.drawable.sepeda1,
-                title = "Sepeda Litrik",
-                type = "Biru",
-                information = "15 Menit - Pembayaran Akhir"
-            )
+            CartItemContent()
         }
         Spacer(
             modifier = Modifier
@@ -86,17 +59,69 @@ fun CartItemContent(
                 .height(2.dp)
                 .background(Color.LightGray)
         )
-        Column(modifier = Modifier.padding(horizontal = 30.dp, vertical = 20.dp)) {
-            ActionButton(text = stringResource(id = R.string.button_bermain)) {
-            }
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 30.dp, vertical = 20.dp)
+        ) {
+            ActionButton(
+                text = stringResource(id = R.string.button_bermain),
+                onClick = { navigateToDetailCheckoutScreen() }
+            )
         }
     }
 }
+
+@Composable
+fun CartItemContent() {
+    ItemCart(
+        image = R.drawable.sepeda1,
+        title = "Sepeda Litrik",
+        type = "Biru",
+        information = "15 Menit - Pembayaran Akhir"
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun TopAppBar() {
+    TopAppBar(
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.background,
+            navigationIconContentColor = MaterialTheme.colorScheme.primary
+        ),
+        navigationIcon = {
+            Icon(
+                modifier = Modifier
+                    .padding(start = 15.dp)
+                    .clickable { },
+                imageVector = Icons.Filled.KeyboardArrowLeft,
+                tint = BlueColor500,
+                contentDescription = "Left Navigation Icon"
+            )
+        },
+        title = {
+            Text(
+                text = stringResource(R.string.screen_keranjang),
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp,
+                )
+            )
+        })
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CartItemContentPreview() {
+    TugasAkhirTheme {
+        CartItemContent()
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun CartItemScreenPreview() {
     TugasAkhirTheme {
-        CartItemContent(
-        )
+        CartItemScreen()
     }
 }

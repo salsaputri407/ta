@@ -39,8 +39,8 @@ import com.example.tugasakhir.view.components.SegmentText
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailCheckContent(
-    detailpayment: String,
     modifier: Modifier = Modifier,
+    detailPayment: String = "Akhir"
 ){
     Column {
         TopAppBar(
@@ -112,7 +112,7 @@ fun DetailCheckContent(
                             fontSize = 14.sp,
                         ))
                     Text(
-                        text = detailpayment,
+                        text = detailPayment,
                         style = MaterialTheme.typography.titleMedium.copy(
                             color = BlueColor500,
                             fontWeight = FontWeight.Medium,
@@ -149,6 +149,6 @@ fun DetailCheckContent(
 fun DetailCheckoutScreenPreview() {
     TugasAkhirTheme {
         DetailCheckContent(
-            detailpayment = "Akhir",)
+            detailPayment = "Akhir",)
     }
 }

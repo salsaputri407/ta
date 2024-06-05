@@ -31,7 +31,9 @@ import com.example.tugasakhir.view.screen.HistoryScreen
 import com.example.tugasakhir.view.screen.HomeScreen
 import com.example.tugasakhir.view.screen.ItemScreen
 import com.example.tugasakhir.view.screen.CartItemContent
+import com.example.tugasakhir.view.screen.CartItemScreen
 import com.example.tugasakhir.view.screen.DetailBarangScreen
+import com.example.tugasakhir.view.screen.DetailCheckContent
 
 @Composable
 fun App(
@@ -44,7 +46,8 @@ fun App(
     Scaffold(
         bottomBar = {
             if (currentRoute != Screen.Detail.route &&
-                currentRoute != Screen.Cart.route
+                currentRoute != Screen.Cart.route &&
+                currentRoute != Screen.Checkout.route
             ) {
                 BottomBar(navController)
             }
@@ -84,7 +87,12 @@ fun App(
                 HistoryScreen()
             }
             composable(Screen.Cart.route) {
-                CartItemContent()
+                CartItemScreen(
+                    navigateToDetailCheckoutScreen = { navController.navigate(Screen.Checkout.route) }
+                )
+            }
+            composable(Screen.Checkout.route) {
+                DetailCheckContent()
             }
         }
     }
