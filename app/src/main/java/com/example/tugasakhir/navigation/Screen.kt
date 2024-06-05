@@ -13,6 +13,8 @@ sealed class Screen(val route: String) {
 
     data object Checkout : Screen("checkout")
 
+    data object Reedem : Screen("reedem")
+
     data object Timer : Screen("timer")
 
     data object Spinner : Screen("spinner")

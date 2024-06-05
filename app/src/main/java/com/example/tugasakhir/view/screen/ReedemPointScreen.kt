@@ -43,11 +43,11 @@ fun ReedemPointScreen(
     point: Int,
     modifier: Modifier = Modifier,
 ){
-    var showDialog by remember { mutableStateOf(false) }
-
-    if (showDialog){
-       AlertDialog(onDismiss = {showDialog=false})
-    }
+//    var showDialog by remember { mutableStateOf(false) }
+//
+//    if (showDialog){
+//       AlertDialog(onDismiss = {showDialog=false})
+//    }
 
     Column {
         TopAppBar(
@@ -133,7 +133,7 @@ fun ReedemPointScreen(
         Column (modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp)) {
             ActionButton(
                 text = stringResource(id = R.string.button_point),
-                onClick = {showDialog=true})
+                onClick = {})
         }
     }
 }

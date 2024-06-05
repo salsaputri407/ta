@@ -3,6 +3,7 @@ package com.example.tugasakhir.view.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,10 +38,10 @@ fun ItemCart(
     image: Int,
     title: String,
     type: String,
-    information: String,
     modifier: Modifier = Modifier,
 ){
     Row (
+        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
@@ -89,21 +90,13 @@ fun ItemCart(
 
                 )
             }
-            Text(
-                text = information,
-                style = MaterialTheme.typography.titleSmall.copy(
-                    fontSize = 12.sp
-                ),
-                modifier = Modifier
-                    .padding(top= 20.dp, start = 25.dp))
-
         }
         Icon(
             imageVector = Icons.Default.Delete ,
             contentDescription = "Delete Item",
             tint = BlueColor500,
             modifier= Modifier
-                .padding(start = 60.dp)
+                .padding(start = 105.dp)
                 .align(Alignment.Bottom)
         )
     }
@@ -116,7 +109,6 @@ fun ItemCartPreview() {
         ItemCart(
             image = R.drawable.sepeda1,
             title = "Sepeda Listrik",
-            type = "Biru",
-            information = "15 Menit - Pembayaran Akhir" )
+            type = "Biru")
     }
 }

@@ -1,6 +1,7 @@
 package com.example.tugasakhir.view.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,6 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,8 +28,7 @@ import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 
 @Composable
 fun GetTime(
-    text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ){
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -39,13 +40,14 @@ fun GetTime(
             .padding(18.dp)
     ) {
         Text(
-            text = text,
+            text = "Bermain gratis sampai 10 menit!?  Tukar pointmu!",
             style = MaterialTheme.typography.titleMedium.copy(
                 color = Color.White,
                 fontWeight = FontWeight.Medium,
-                fontSize = 14.sp,
+                fontSize = 12.sp,
             ))
         Icon(
+            modifier = modifier.clickable {  },
             imageVector = Icons.Filled.KeyboardArrowRight,
             contentDescription = "Right Navigation",
             tint = Color.White)
@@ -56,7 +58,6 @@ fun GetTime(
 @Preview(showBackground = true)
 fun GetTimesPreview() {
     TugasAkhirTheme{
-        GetTime(
-            text = "Tukar point dengan tambahan waktu")
+        GetTime()
     }
 }

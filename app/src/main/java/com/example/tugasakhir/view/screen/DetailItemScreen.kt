@@ -163,44 +163,8 @@ fun DetailBarangContent(
                         fontSize = 14.sp,
                         color = BlueColor500
                     ))
-                Text(
-                    text = "Pembayaran",
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 14.sp,
-                    ))
-                Row (horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-                    Button(
-                        onClick = { /*TODO*/ },
-                        border = BorderStroke(2.dp, Color.LightGray),
-                        shape = RoundedCornerShape(8.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.White,
-                            contentColor = Color.LightGray
-                        ),
-                        modifier = Modifier
-                            .wrapContentSize()
-                            .height(35.dp)
-                    ) {
-                        Text(text = "Awal")
-                    }
-                    Button(
-                        onClick = { },
-                        border = BorderStroke(2.dp, Color.LightGray),
-                        shape = RoundedCornerShape(8.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.White,
-                            contentColor = Color.LightGray
-                        ),
-                        modifier = Modifier
-                            .wrapContentSize()
-                            .height(35.dp)) {
-                        Text(text = "Akhir")
-
-                    }
                 }
             }
-        }
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)

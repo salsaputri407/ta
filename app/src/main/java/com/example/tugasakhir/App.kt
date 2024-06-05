@@ -47,7 +47,8 @@ fun App(
         bottomBar = {
             if (currentRoute != Screen.Detail.route &&
                 currentRoute != Screen.Cart.route &&
-                currentRoute != Screen.Checkout.route
+                currentRoute != Screen.Checkout.route &&
+                currentRoute != Screen.Reedem.route
             ) {
                 BottomBar(navController)
             }

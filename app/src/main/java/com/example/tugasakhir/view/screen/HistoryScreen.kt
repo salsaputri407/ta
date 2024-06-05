@@ -75,7 +75,6 @@ fun HistoryScreen(
         )
         Row (
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp, vertical = 15.dp)
@@ -106,6 +105,7 @@ fun HistoryScreen(
                 modifier= Modifier
                     .wrapContentSize()
                     .height(30.dp)
+                    .padding(start = 15.dp)
             ) {
                 Text(
                     text = stringResource(id = R.string.button_history_1),
@@ -113,22 +113,6 @@ fun HistoryScreen(
                         fontWeight = FontWeight.Medium
                     ))
 
-            }
-            Button(
-                onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = Color.Black),
-                modifier= Modifier
-                    .wrapContentSize()
-                    .height(30.dp)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.button_history_2),
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        fontWeight = FontWeight.Medium
-                    ))
             }
         }
         Column(

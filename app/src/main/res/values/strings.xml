@@ -18,8 +18,7 @@
     <string name="button_bermain">Bermain</string>
     <string name="button_spinner">Spin</string>
     <string name="button_point">Tukar</string>
-    <string name="button_full_history">Semua</string>
-    <string name="button_history_1">Berlangsung</string>
-    <string name="button_history_2">Selesai</string>
+    <string name="button_full_history">Sewa</string>
+    <string name="button_history_1">Point</string>
     <string name="required_point">%d</string>
 </resources>

@@ -77,7 +77,6 @@ fun CartItemContent() {
         image = R.drawable.sepeda1,
         title = "Sepeda Litrik",
         type = "Biru",
-        information = "15 Menit - Pembayaran Akhir"
     )
 }
 
