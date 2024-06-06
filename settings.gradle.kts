@@ -18,4 +18,3 @@ dependencyResolutionManagement {
 rootProject.name = "TugasAkhir"
 include(":app")
 include(":timer")
-include(":spinner")
