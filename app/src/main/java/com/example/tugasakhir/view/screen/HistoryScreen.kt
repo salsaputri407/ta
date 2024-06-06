@@ -48,23 +48,13 @@ fun HistoryScreen(
                 containerColor = MaterialTheme.colorScheme.background,
                 navigationIconContentColor = MaterialTheme.colorScheme.primary
             ),
-            navigationIcon = {
-                Icon(
-                    modifier = modifier
-                        .padding(start = 15.dp)
-                        .clickable { },
-                    imageVector = Icons.Filled.KeyboardArrowLeft,
-                    tint = BlueColor500,
-                    contentDescription = "Left Navigation Icon"
-                )
-            },
             title = {
                 Text(
                     text = stringResource(R.string.screen_history),
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Medium,
-                        fontSize = 14.sp,
-                    )
+                        fontSize = 14.sp,),
+                    modifier = Modifier.padding(start = 8.dp)
                 )
             })
         Spacer(

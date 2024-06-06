@@ -34,6 +34,7 @@ import com.example.tugasakhir.view.screen.CartItemContent
 import com.example.tugasakhir.view.screen.CartItemScreen
 import com.example.tugasakhir.view.screen.DetailBarangScreen
 import com.example.tugasakhir.view.screen.DetailCheckContent
+import com.example.tugasakhir.view.screen.ReedemPointScreen
 import com.example.tugasakhir.view.screen.WheelspinScreen
 
 @Composable
@@ -97,10 +98,17 @@ fun App(
                 )
             }
             composable(Screen.Checkout.route) {
-                DetailCheckContent()
+                DetailCheckContent(
+                    navigateToReedemPointScreen = {navController.navigate(Screen.Reedem.route)}
+                )
             }
             composable(Screen.Spinner.route) {
                 WheelspinScreen()
+            }
+            composable(Screen.Reedem.route){
+                ReedemPointScreen(
+                    navigateToDetailCheckoutScreen = {navController.navigate(Screen.Checkout.route)}
+                )
             }
         }
     }

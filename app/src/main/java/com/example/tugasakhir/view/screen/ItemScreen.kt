@@ -3,6 +3,7 @@ package com.example.tugasakhir.view.screen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.ShoppingCart
@@ -22,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
+import androidx.compose.material3.TabPosition
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -33,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -100,24 +104,13 @@ private fun TopAppBar(modifier: Modifier = Modifier) {
             containerColor = MaterialTheme.colorScheme.background,
             navigationIconContentColor = MaterialTheme.colorScheme.primary
         ),
-
-        navigationIcon = {
-            Icon(
-                modifier = modifier
-                    .padding(start = 15.dp)
-                    .clickable { },
-                imageVector = Icons.Default.KeyboardArrowLeft,
-                tint = BlueColor500,
-                contentDescription = "Navigation Icon",
-            )
-        },
         title = {
             Text(
                 text = stringResource(R.string.screen_barang),
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Medium,
-                    fontSize = 14.sp,
-                )
+                    fontSize = 14.sp,),
+                modifier = Modifier.padding(start = 8.dp)
             )
         }
     )
@@ -133,14 +126,22 @@ fun TabLayout(
     Row {
         TabRow(
             selectedTabIndex = selectedTabIndex,
-            contentColor = Color.Black
+            modifier = Modifier.clip(RoundedCornerShape(25)),
+            indicator = {tabPositions: List<TabPosition> -> Box {} }
         ) {
             tabTitles.forEachIndexed { index, title ->
+                var selected = selectedTabIndex == index
                 Tab(
-                    text = { Text(title) },
-                    selected = selectedTabIndex == index,
-                    onClick = { onTabSelected(index) }
-                )
+                    modifier = if (selected) Modifier
+                        .clip(RoundedCornerShape(25))
+                        .background(BlueColor500)
+                    else
+                        Modifier
+                            .clip(RoundedCornerShape(25))
+                            .background(Color.White),
+                    text = { Text(text= title, color = if (selected) Color.White else Color.Black)   },
+                    selected = selected,
+                    onClick = { onTabSelected(index) })
             }
         }
 

@@ -68,7 +68,7 @@ fun DetailCheckContent(
             Spacer(modifier = Modifier
                 .fillMaxWidth()
                 .height(10.dp))
-            GetTime ()
+            GetTime (navigateToReedemPointScreen = navigateToReedemPointScreen)
         }
         Spacer(modifier = Modifier
             .fillMaxWidth()

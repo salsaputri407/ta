@@ -29,6 +29,7 @@ import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 @Composable
 fun GetTime(
     modifier: Modifier = Modifier,
+    navigateToReedemPointScreen: () -> Unit = {}
 ){
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -37,7 +38,7 @@ fun GetTime(
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
             .background(color = GreenColor500)
-            .padding(18.dp)
+            .padding(horizontal = 18.dp, vertical = 5.dp)
     ) {
         Text(
             text = "Bermain gratis sampai 10 menit!?  Tukar pointmu!",
@@ -46,11 +47,16 @@ fun GetTime(
                 fontWeight = FontWeight.Medium,
                 fontSize = 12.sp,
             ))
-        Icon(
-            modifier = modifier.clickable {  },
-            imageVector = Icons.Filled.KeyboardArrowRight,
-            contentDescription = "Right Navigation",
-            tint = Color.White)
+        IconButton(
+            modifier= Modifier
+                .padding(start = 2.dp)
+                .align(Alignment.CenterVertically),
+            onClick = { navigateToReedemPointScreen()}) {
+            Icon(
+                imageVector = Icons.Filled.KeyboardArrowRight,
+                contentDescription = "Right Navigation",
+                tint = Color.White)
+        }
     }
 }
 
