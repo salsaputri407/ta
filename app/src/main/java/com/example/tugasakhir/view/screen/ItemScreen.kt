@@ -61,7 +61,7 @@ fun ItemScreen(
     var selectedTabIndex by remember { mutableIntStateOf(0) }
 
     Column(modifier = modifier) {
-        TopAppBar()
+        TopAppBar(navigateToCartItemScreen=navigateToCartItemScreen)
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
@@ -74,15 +74,6 @@ fun ItemScreen(
             modifier = Modifier
                 .padding(vertical = 15.dp, horizontal = 20.dp)
         ) {
-            IconButton(
-                onClick = { navigateToCartItemScreen() }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.ShoppingCart,
-                    contentDescription = "Keranjang",
-                    tint = BlueColor500
-                )
-            }
             TabLayout(
                 tabTitles = tabTitles,
                 selectedTabIndex = selectedTabIndex,
@@ -98,7 +89,9 @@ fun ItemScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopAppBar(modifier: Modifier = Modifier) {
+private fun TopAppBar(
+    modifier: Modifier = Modifier,
+    navigateToCartItemScreen : () -> Unit,) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
@@ -112,6 +105,15 @@ private fun TopAppBar(modifier: Modifier = Modifier) {
                     fontSize = 14.sp,),
                 modifier = Modifier.padding(start = 8.dp)
             )
+        },
+        actions = {
+            IconButton(onClick = { navigateToCartItemScreen()}) {
+                Icon(
+                    imageVector = Icons.Filled.ShoppingCart,
+                    contentDescription = "Keranjang",
+                    tint = BlueColor500
+                )
+            }
         }
     )
 }
@@ -144,12 +146,6 @@ fun TabLayout(
                     onClick = { onTabSelected(index) })
             }
         }
-
-        Icon(
-            imageVector = Icons.Filled.ShoppingCart,
-            contentDescription = "Keranjang",
-            tint = BlueColor500
-        )
     }
 }
 
@@ -173,13 +169,13 @@ fun BarangContent(
     }
 }
 
-@Preview
-@Composable
-private fun TitleBarPreview() {
-    TugasAkhirTheme {
-        TopAppBar()
-    }
-}
+//@Preview
+//@Composable
+//private fun TitleBarPreview() {
+//    TugasAkhirTheme {
+//        TopAppBar()
+//    }
+//}
 
 @Preview
 @Composable
