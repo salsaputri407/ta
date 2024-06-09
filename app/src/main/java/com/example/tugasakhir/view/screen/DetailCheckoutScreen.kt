@@ -25,6 +25,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -34,7 +38,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
+import com.example.tugasakhir.ui.theme.BabyBlueColor500
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.ActionButton
 import com.example.tugasakhir.view.components.DetailCart
@@ -159,13 +165,15 @@ fun Information()
                     modifier = Modifier
                         .padding(top= 5.dp)
                 ) {
+                    var selectedbutton1 by remember { mutableStateOf(false) }
+                    var selectedbutton2 by remember { mutableStateOf(false) }
                     Button(
-                        onClick = { /*TODO*/ },
-                        border = BorderStroke(2.dp, Color.LightGray),
+                        onClick = { selectedbutton1 = !selectedbutton1 },
+                        border = if (selectedbutton1) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, Color.LightGray),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.White,
-                            contentColor = Color.LightGray
+                            containerColor = if (selectedbutton1) PastelBlueColor500 else Color.White,
+                            contentColor = if (selectedbutton1) BlueColor500 else Color.LightGray
                         ),
                         modifier = Modifier
                             .wrapContentSize()
@@ -174,12 +182,12 @@ fun Information()
                         Text(text = "Awal")
                     }
                     Button(
-                        onClick = { },
-                        border = BorderStroke(2.dp, Color.LightGray),
+                        onClick = { selectedbutton2 = !selectedbutton2 },
+                        border = if (selectedbutton2) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, Color.LightGray),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.White,
-                            contentColor = Color.LightGray
+                            containerColor = if (selectedbutton2) PastelBlueColor500 else Color.White,
+                            contentColor = if (selectedbutton2) BlueColor500 else Color.LightGray
                         ),
                         modifier = Modifier
                             .wrapContentSize()

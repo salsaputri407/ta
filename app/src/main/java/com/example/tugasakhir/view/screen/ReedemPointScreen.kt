@@ -1,16 +1,24 @@
 package com.example.tugasakhir.view.screen
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -32,10 +40,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.ActionButton
 import com.example.tugasakhir.view.components.AlertDialog
-import com.example.tugasakhir.view.components.ChooseReedem
 
 @Composable
 fun ReedemPointScreen(
@@ -130,6 +138,8 @@ fun ReedemContent(){
             .fillMaxWidth()
             .padding(20.dp)
     ) {
+        var selectedreward1 by remember { mutableStateOf(false) }
+        var selectedreward2 by remember { mutableStateOf(false) }
         Text(
             text = stringResource(R.string.detail_time),
             style = MaterialTheme.typography.titleMedium.copy(
@@ -138,14 +148,65 @@ fun ReedemContent(){
             ),
             modifier= Modifier.padding(bottom = 7.dp)
         )
-        ChooseReedem(
-            time = "5 Menit",
-            point = "50 Point",
-            modifier= Modifier
-                .padding(vertical = 10.dp))
-        ChooseReedem(
-            time = "10 Menit",
-            point = "100 Point")
+        Button(
+            onClick = { selectedreward1 = !selectedreward1 },
+            border = if (selectedreward1) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, Color.LightGray),
+            shape = RoundedCornerShape(8.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = if (selectedreward1) PastelBlueColor500 else Color.White,
+                contentColor = if (selectedreward1) BlueColor500 else Color.LightGray
+            ),
+            modifier = Modifier
+                .height(35.dp)
+        ) {
+            Row (
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = "5 Menit",
+                    style = MaterialTheme.typography.titleSmall.copy(
+                    color= if (selectedreward1) BlueColor500 else Color.LightGray,
+                    fontSize = 12.sp))
+                Text(
+                    text = "50 Point",
+                    style = MaterialTheme.typography.titleSmall.copy(
+                        color= if (selectedreward1) BlueColor500 else Color.LightGray,
+                        fontSize = 12.sp))
+            }
+
+        }
+        Spacer(Modifier.height(10.dp))
+        Button(
+            onClick = { selectedreward2 = !selectedreward2 },
+            border = if (selectedreward2) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, Color.LightGray),
+            shape = RoundedCornerShape(8.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = if (selectedreward2) PastelBlueColor500 else Color.White,
+                contentColor = if (selectedreward2) BlueColor500 else Color.LightGray
+            ),
+            modifier = Modifier
+                .height(35.dp)
+        ) {
+            Row (
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = "10 Menit",
+                    style = MaterialTheme.typography.titleSmall.copy(
+                        color= if (selectedreward2) BlueColor500 else Color.LightGray,
+                        fontSize = 12.sp))
+                Text(
+                    text = "100 Point",
+                    style = MaterialTheme.typography.titleSmall.copy(
+                        color= if (selectedreward2) BlueColor500 else Color.LightGray,
+                        fontSize = 12.sp))
+            }
+
+        }
     }
 }
 
