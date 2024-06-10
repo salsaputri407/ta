@@ -30,12 +30,11 @@ import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.screen.HistoryScreen
 import com.example.tugasakhir.view.screen.HomeScreen
 import com.example.tugasakhir.view.screen.ItemScreen
-import com.example.tugasakhir.view.screen.CartItemContent
 import com.example.tugasakhir.view.screen.CartItemScreen
 import com.example.tugasakhir.view.screen.DetailBarangScreen
 import com.example.tugasakhir.view.screen.DetailCheckContent
 import com.example.tugasakhir.view.screen.ReedemPointScreen
-import com.example.tugasakhir.view.screen.WheelspinScreen
+import com.example.tugasakhir.view.screen.WheelSpinScreen
 
 @Composable
 fun App(
@@ -47,11 +46,9 @@ fun App(
 
     Scaffold(
         bottomBar = {
-            if (currentRoute != Screen.Detail.route &&
-                currentRoute != Screen.Cart.route &&
-                currentRoute != Screen.Checkout.route &&
-                currentRoute != Screen.Reedem.route &&
-                currentRoute != Screen.Spinner.route
+            if (currentRoute == Screen.Home.route ||
+                currentRoute == Screen.Item.route ||
+                currentRoute == Screen.History.route
             ) {
                 BottomBar(navController)
             }
@@ -87,26 +84,29 @@ fun App(
                 val barangId = backStackEntry.arguments?.getLong("barangId")
                 val image = backStackEntry.arguments?.getInt("image")
                 val title = backStackEntry.arguments?.getString("title")
-                DetailBarangScreen(barangId = barangId, image = image, title = title)
+                DetailBarangScreen(barangId = barangId, image = image, title = title, navigateBack = {navController.navigateUp()})
             }
             composable(Screen.History.route) {
                 HistoryScreen()
             }
             composable(Screen.Cart.route) {
                 CartItemScreen(
-                    navigateToDetailCheckoutScreen = { navController.navigate(Screen.Checkout.route) }
+                    navigateBack = {navController.navigateUp()},
+                    navigateToDetailCheckoutScreen = { navController.navigate(Screen.Checkout.route)}
                 )
             }
             composable(Screen.Checkout.route) {
                 DetailCheckContent(
+                    navigateBack = {navController.navigateUp()},
                     navigateToReedemPointScreen = {navController.navigate(Screen.Reedem.route)}
                 )
             }
             composable(Screen.Spinner.route) {
-                WheelspinScreen()
+                WheelSpinScreen()
             }
             composable(Screen.Reedem.route){
                 ReedemPointScreen(
+                    navigateBack = {navController.navigateUp()},
                     navigateToDetailCheckoutScreen = {navController.navigate(Screen.Checkout.route)}
                 )
             }

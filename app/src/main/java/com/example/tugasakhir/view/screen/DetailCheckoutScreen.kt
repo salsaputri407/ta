@@ -51,10 +51,11 @@ import com.example.tugasakhir.view.components.SegmentText
 @Composable
 fun DetailCheckContent(
     modifier: Modifier = Modifier,
-    navigateToReedemPointScreen: () -> Unit = {}
+    navigateToReedemPointScreen: () -> Unit = {},
+    navigateBack: () -> Unit,
 ){
     Column {
-        TopAppBar()
+        TopAppBar(onBackClick = {navigateBack()})
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
@@ -81,8 +82,8 @@ fun DetailCheckContent(
             .height(2.dp)
             .background(Color.LightGray))
         Column (modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp)) {
-            ActionButton(text = stringResource(id = R.string.button_bermain)) {
-            }
+            ActionButton(text = stringResource(id = R.string.button_bermain), onClick = {
+            })
         }
     }
 }
@@ -90,7 +91,9 @@ fun DetailCheckContent(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopAppBar() {
+private fun TopAppBar(
+    onBackClick: () -> Unit,
+) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
@@ -100,7 +103,7 @@ private fun TopAppBar() {
             Icon(
                 modifier = Modifier
                     .padding(start = 15.dp)
-                    .clickable { },
+                    .clickable { onBackClick() },
                 imageVector = Icons.Filled.KeyboardArrowLeft,
                 tint = BlueColor500,
                 contentDescription = "Left Navigation Icon"
@@ -108,7 +111,7 @@ private fun TopAppBar() {
         },
         title = {
             Text(
-                text = stringResource(R.string.screen_keranjang),
+                text = stringResource(R.string.screen_detail_sewa),
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
@@ -200,10 +203,10 @@ fun Information()
         }
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun DetailCheckoutScreenPreview() {
-    TugasAkhirTheme {
-        DetailCheckContent()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun DetailCheckoutScreenPreview() {
+//    TugasAkhirTheme {
+//        DetailCheckContent()
+//    }
+//}

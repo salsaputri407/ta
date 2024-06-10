@@ -35,10 +35,11 @@ import com.example.tugasakhir.view.components.ItemCart
 @Composable
 fun CartItemScreen(
     modifier: Modifier = Modifier,
-    navigateToDetailCheckoutScreen: () -> Unit = {}
+    navigateToDetailCheckoutScreen: () -> Unit = {},
+    navigateBack: () -> Unit,
 ) {
     Column(modifier = modifier) {
-        TopAppBar()
+        TopAppBar(onBackClick = {navigateBack()})
         Spacer(
             modifier = Modifier
                 .fillMaxWidth()
@@ -65,7 +66,7 @@ fun CartItemScreen(
         ) {
             ActionButton(
                 text = stringResource(id = R.string.button_bermain),
-                onClick = { navigateToDetailCheckoutScreen() }
+                onClick = { navigateToDetailCheckoutScreen() },
             )
         }
     }
@@ -82,7 +83,9 @@ fun CartItemContent() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopAppBar() {
+private fun TopAppBar(
+    onBackClick: () -> Unit,
+) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
@@ -92,7 +95,7 @@ private fun TopAppBar() {
             Icon(
                 modifier = Modifier
                     .padding(start = 15.dp)
-                    .clickable { },
+                    .clickable { onBackClick()},
                 imageVector = Icons.Filled.KeyboardArrowLeft,
                 tint = BlueColor500,
                 contentDescription = "Left Navigation Icon"
@@ -117,10 +120,10 @@ fun CartItemContentPreview() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun CartItemScreenPreview() {
-    TugasAkhirTheme {
-        CartItemScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun CartItemScreenPreview() {
+//    TugasAkhirTheme {
+//        CartItemScreen()
+//    }
+//}

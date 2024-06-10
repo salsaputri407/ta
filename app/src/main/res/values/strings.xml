@@ -8,7 +8,7 @@
     <string name="menu_akun">Saya</string>
     <string name="screen_barang">Barang yang Disewa</string>
     <string name="screen_keranjang">Keranjang</string>
-    <string name="screen_detail">Detail Barang yang Disewa</string>
+    <string name="screen_detail_sewa">Detail Sewa</string>
     <string name="screen_tukar_point">Tukar Point</string>\
     <string name="screen_history">Riwayat</string>
     <string name="detail_time">Waktu</string>
