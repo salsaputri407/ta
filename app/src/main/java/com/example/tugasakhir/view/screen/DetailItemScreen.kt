@@ -123,7 +123,7 @@ fun DetailBarangContent(
                             BlueColor500,
                             shape = RoundedCornerShape(8.dp)
                         )
-                        .width(50.dp)
+                        .width(80.dp)
                         .height(25.dp)
                         .align(Alignment.BottomCenter)
                 ){

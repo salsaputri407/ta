@@ -1,14 +1,19 @@
 package com.example.tugasakhir.view.screen
 
+import android.icu.text.CaseMap.Title
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,12 +25,20 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabPosition
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +46,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
+import com.example.tugasakhir.model.dummyMainan
+import com.example.tugasakhir.model.dummySepeda
 import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.HistoryItem
@@ -42,6 +57,8 @@ import com.example.tugasakhir.view.components.HistoryItem
 fun HistoryScreen(
     modifier: Modifier = Modifier,
 ){
+    val tabTitles = listOf("Sewa", "Point")
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
     Column {
         TopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(
@@ -63,63 +80,99 @@ fun HistoryScreen(
                 .height(2.dp)
                 .background(Color.LightGray)
         )
-        Row (
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(55.dp),
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp, vertical = 15.dp)
-
-        ){
-            Button(
-                onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = BlueColor500,
-                    contentColor = Color.White),
-                modifier= Modifier
-                    .wrapContentSize()
-                    .height(30.dp)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.button_full_history),
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        fontWeight = FontWeight.Medium
-                    ))
-            }
-            Button(
-                onClick = { /*TODO*/ },
-                shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = Color.Black),
-                modifier= Modifier
-                    .wrapContentSize()
-                    .height(30.dp)
-                    .padding(start = 15.dp)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.button_history_1),
-                    style = MaterialTheme.typography.bodySmall.copy(
-                        fontWeight = FontWeight.Medium
-                    ))
-
-            }
-        }
-        Column(
-            modifier = Modifier
-                .padding(horizontal = 20.dp)
-                .verticalScroll(rememberScrollState())
-                .weight(1f)
         ) {
-            HistoryItem(
-                image = R.drawable.sepeda1 ,
-                title = "Sepeda Listrik",
-                type = "Biru",
-                information = "13 April 2023 - 09.23" ,
-                status = "Selesai" )
+            TabLayout(
+                tabTitles = tabTitles,
+                selectedTabIndex = selectedTabIndex,
+                onTabSelected = { selectedTabIndex = it }
+            )
+        }
+        when (selectedTabIndex) {
+            0 ->Column(
+                modifier = Modifier
+                    .padding(horizontal = 20.dp)
+                    .verticalScroll(rememberScrollState())
+                    .weight(1f)){
+                HistorySewaContent() }
+            1 -> HistoryPointContent()
         }
     }
 }
+
+
+@Composable
+private fun TabLayout(
+    modifier: Modifier = Modifier,
+    tabTitles: List<String>,
+    selectedTabIndex: Int,
+    onTabSelected: (Int) -> Unit,
+){
+    TabRow(
+        selectedTabIndex = selectedTabIndex,
+        modifier = Modifier
+            .clip(RoundedCornerShape(15))
+            .height(35.dp)
+            .width(250.dp),
+        indicator = {tabPositions: List<TabPosition> -> Box {} }
+        ) {
+        tabTitles.forEachIndexed { index, title ->  var selected = selectedTabIndex == index
+        Tab(
+            modifier = if (selected) Modifier
+                .clip(RoundedCornerShape(20))
+                .background(BlueColor500)
+            else Modifier
+                .clip(RoundedCornerShape(20))
+                .background(Color.White),
+            text = { Text(text= title, color = if (selected) Color.White else Color.Black)  },
+            selected = selected,
+            onClick = {onTabSelected(index)}
+        )
+        }
+    }
+}
+
+@Composable
+fun HistorySewaContent(){
+
+    HistoryItem(
+        image = R.drawable.sepeda1 ,
+        title = "Sepeda Listrik",
+        type = "Biru",
+        information = "13 April 2023 - 09.23" ,
+        status = "Selesai" )
+}
+
+@Composable
+fun HistoryPointContent(
+    modifier: Modifier = Modifier
+){
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(stringResource(R.string.screen_history))
+    }
+}
+
+@Preview
+@Composable
+private fun TabLayoutrPreview() {
+    TugasAkhirTheme {
+        TabLayout(
+            tabTitles = listOf("Sewa", "Point"),
+            selectedTabIndex = 0,
+            onTabSelected = {}
+        )
+    }
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun HistoryScreenPreview() {

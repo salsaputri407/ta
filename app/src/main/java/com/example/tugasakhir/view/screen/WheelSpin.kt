@@ -111,15 +111,17 @@ private fun Header(
     modifier: Modifier = Modifier
 ) {
     Row(
+        verticalAlignment =  Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp, vertical = 15.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
             text = "Selamat Datang!"
         )
-        Row {
+        Row ( verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End,){
             Text(text = "0")
             Icon(
                 imageVector = Icons.Filled.Star,

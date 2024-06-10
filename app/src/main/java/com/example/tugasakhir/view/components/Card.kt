@@ -33,7 +33,6 @@ fun Card(
             modifier= modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp))
-                .clickable(onClick = { })
                 .padding(top = 20.dp, bottom = 20.dp, start = 25.dp, end = 25.dp)
                 .background(MaterialTheme.colorScheme.background)
         ){

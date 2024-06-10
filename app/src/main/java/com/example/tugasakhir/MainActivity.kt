@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
             TugasAkhirTheme {
                 Surface (
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.background
                 ){
                     App()
                 }

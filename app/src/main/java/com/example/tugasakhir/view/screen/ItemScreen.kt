@@ -1,6 +1,7 @@
 package com.example.tugasakhir.view.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -119,7 +121,7 @@ private fun TopAppBar(
 }
 
 @Composable
-fun TabLayout(
+private fun TabLayout(
     modifier: Modifier = Modifier,
     tabTitles: List<String>,
     selectedTabIndex: Int,
@@ -128,19 +130,21 @@ fun TabLayout(
     Row {
         TabRow(
             selectedTabIndex = selectedTabIndex,
-            modifier = Modifier.clip(RoundedCornerShape(25)),
+            modifier = Modifier
+                .clip(RoundedCornerShape(15))
+                .height(35.dp)
+                .width(250.dp),
             indicator = {tabPositions: List<TabPosition> -> Box {} }
         ) {
             tabTitles.forEachIndexed { index, title ->
                 var selected = selectedTabIndex == index
                 Tab(
                     modifier = if (selected) Modifier
-                        .clip(RoundedCornerShape(25))
+                        .clip(RoundedCornerShape(20))
                         .background(BlueColor500)
-                    else
-                        Modifier
-                            .clip(RoundedCornerShape(25))
-                            .background(Color.White),
+                    else Modifier
+                        .clip(RoundedCornerShape(20))
+                        .background(Color.White),
                     text = { Text(text= title, color = if (selected) Color.White else Color.Black)   },
                     selected = selected,
                     onClick = { onTabSelected(index) })
