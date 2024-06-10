@@ -157,8 +157,8 @@ fun Overlay(
                 contentDescription = ""
             )
             ActionButton(
+                text = "Kembali",
                 onClick = { showOverlay(false) },
-                text = "Kembali"
             )
         }
     }
@@ -182,7 +182,7 @@ private fun Title(
         Text(
             text = "Kumpulkan point dengan 2 kali kesempatan dan tukar pointmu dengan waktu bermain gratis",
             textAlign = TextAlign.Center,
-            fontSize = 12.sp
+            fontSize = 10.sp
         )
     }
 }
@@ -199,6 +199,7 @@ private fun SpinButton(
         modifier = modifier.padding(horizontal = 30.dp, vertical = 20.dp)
     ) {
         ActionButton(
+            text = "Spin",
             onClick = {
                 scope.launch {
                     state.animate { pieIndex ->
@@ -207,7 +208,6 @@ private fun SpinButton(
                     }
                 }
             },
-            text = "Spin"
         )
     }
 }

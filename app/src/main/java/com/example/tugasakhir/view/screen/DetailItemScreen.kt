@@ -1,7 +1,6 @@
 package com.example.tugasakhir.view.screen
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -49,11 +48,12 @@ fun DetailBarangScreen(
     barangId: Long?,
     image: Int?,
     title: String?,
+    navigateBack: () -> Unit,
 ){
     DetailBarangContent(
         image = image ?: R.drawable.sepeda1,
         title = title ?: "Biru",
-        onBackClick = {},
+        onBackClick = {navigateBack()},
         onAddToCart = {}
     )
 }
@@ -77,7 +77,7 @@ fun DetailBarangContent(
                 Icon(
                     modifier = modifier
                         .padding(start = 15.dp)
-                        .clickable { },
+                        .clickable { onBackClick() },
                     imageVector = Icons.Filled.KeyboardArrowLeft,
                     tint = BlueColor500,
                     contentDescription = "Left Navigation Icon"
@@ -171,8 +171,9 @@ fun DetailBarangContent(
             .background(Color.LightGray))
         Column (modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp)) {
             ActionButton(
+                text = stringResource(id = R.string.button_keranjang),
                 onClick = {},
-                text = stringResource(id = R.string.button_keranjang))
+            )
         }
     }
 }

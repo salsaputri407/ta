@@ -4,6 +4,8 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -48,7 +50,8 @@ import com.example.tugasakhir.view.components.AlertDialog
 @Composable
 fun ReedemPointScreen(
     modifier: Modifier = Modifier,
-    navigateToDetailCheckoutScreen: () -> Unit = {}
+    navigateToDetailCheckoutScreen: () -> Unit = {},
+    navigateBack: () -> Unit,
 
 ){
 //    var showDialog by remember { mutableStateOf(false) }
@@ -58,7 +61,7 @@ fun ReedemPointScreen(
 //    }
 
     Column {
-        TopAppBar()
+        TopAppBar(onBackClick = {navigateBack()})
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
@@ -74,17 +77,34 @@ fun ReedemPointScreen(
             .fillMaxWidth()
             .height(2.dp)
             .background(Color.LightGray))
-        Column (modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp)) {
+        Column (
+            modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp),) {
+//            Button(
+//                onClick = {navigateToDetailCheckoutScreen()},
+//                shape = RoundedCornerShape(8.dp),
+//                colors = ButtonDefaults.buttonColors(BlueColor500),
+//                modifier = modifier
+//                    .fillMaxWidth()
+//            ) {
+//                Text(
+//                    text = stringResource(id = R.string.button_point),
+//                    modifier = Modifier
+//                        .align(Alignment.CenterVertically))
+//            }
+
             ActionButton(
                 text = stringResource(id = R.string.button_point),
-                onClick = {navigateToDetailCheckoutScreen()})
+                onClick = {navigateToDetailCheckoutScreen()},
+                )
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TopAppBar() {
+private fun TopAppBar(
+    onBackClick: () -> Unit,
+) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
@@ -94,7 +114,7 @@ private fun TopAppBar() {
             Icon(
                 modifier = Modifier
                     .padding(start = 15.dp)
-                    .clickable { },
+                    .clickable { onBackClick() },
                 imageVector = Icons.Filled.KeyboardArrowLeft,
                 tint = BlueColor500,
                 contentDescription = "Left Navigation Icon"
@@ -214,6 +234,6 @@ fun ReedemContent(){
 @Composable
 fun RedeemPointScreenPreview() {
     TugasAkhirTheme {
-        ReedemPointScreen()
+        ReedemContent()
     }
 }

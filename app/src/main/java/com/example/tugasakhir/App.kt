@@ -87,18 +87,20 @@ fun App(
                 val barangId = backStackEntry.arguments?.getLong("barangId")
                 val image = backStackEntry.arguments?.getInt("image")
                 val title = backStackEntry.arguments?.getString("title")
-                DetailBarangScreen(barangId = barangId, image = image, title = title)
+                DetailBarangScreen(barangId = barangId, image = image, title = title, navigateBack = {navController.navigateUp()})
             }
             composable(Screen.History.route) {
                 HistoryScreen()
             }
             composable(Screen.Cart.route) {
                 CartItemScreen(
-                    navigateToDetailCheckoutScreen = { navController.navigate(Screen.Checkout.route) }
+                    navigateBack = {navController.navigateUp()},
+                    navigateToDetailCheckoutScreen = { navController.navigate(Screen.Checkout.route)}
                 )
             }
             composable(Screen.Checkout.route) {
                 DetailCheckContent(
+                    navigateBack = {navController.navigateUp()},
                     navigateToReedemPointScreen = {navController.navigate(Screen.Reedem.route)}
                 )
             }
@@ -107,6 +109,7 @@ fun App(
             }
             composable(Screen.Reedem.route){
                 ReedemPointScreen(
+                    navigateBack = {navController.navigateUp()},
                     navigateToDetailCheckoutScreen = {navController.navigate(Screen.Checkout.route)}
                 )
             }
