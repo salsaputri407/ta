@@ -2,15 +2,20 @@ package com.example.tugasakhir.view.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -30,7 +35,8 @@ import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.ActionButton
 import com.example.tugasakhir.view.components.ItemCart
-
+import com.example.tugasakhir.model.Barang
+import com.example.tugasakhir.model.Order
 
 @Composable
 fun CartItemScreen(
@@ -38,6 +44,8 @@ fun CartItemScreen(
     navigateToDetailCheckoutScreen: () -> Unit = {},
     navigateBack: () -> Unit,
 ) {
+
+
     Column(modifier = modifier) {
         TopAppBar(onBackClick = {navigateBack()})
         Spacer(
@@ -73,7 +81,17 @@ fun CartItemScreen(
 }
 
 @Composable
-fun CartItemContent() {
+fun CartItemContent(
+) {
+//    LazyColumn(
+//        contentPadding = PaddingValues(16.dp),
+//        verticalArrangement = Arrangement.spacedBy(8.dp),
+//        ){
+//        items(orderItem, key = {it.item.id}){ item->
+//            ItemCart(orderId = item.item.id, image = item.item.image, type = item.item.title)
+//            Divider()
+//        }
+//    }
     ItemCart(
         image = R.drawable.sepeda1,
         title = "Sepeda Litrik",
@@ -95,7 +113,7 @@ private fun TopAppBar(
             Icon(
                 modifier = Modifier
                     .padding(start = 15.dp)
-                    .clickable { onBackClick()},
+                    .clickable { onBackClick() },
                 imageVector = Icons.Filled.KeyboardArrowLeft,
                 tint = BlueColor500,
                 contentDescription = "Left Navigation Icon"
@@ -112,13 +130,13 @@ private fun TopAppBar(
         })
 }
 
-@Preview(showBackground = true)
-@Composable
-fun CartItemContentPreview() {
-    TugasAkhirTheme {
-        CartItemContent()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun CartItemContentPreview() {
+//    TugasAkhirTheme {
+//        CartItemContent()
+//    }
+//}
 
 //@Preview(showBackground = true)
 //@Composable

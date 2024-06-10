@@ -41,7 +41,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,6 +52,8 @@ import com.example.tugasakhir.R
 import com.example.tugasakhir.model.dummyMainan
 import com.example.tugasakhir.model.dummySepeda
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.GrayLight500
+import com.example.tugasakhir.ui.theme.GreenColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.HistoryItem
 
@@ -100,7 +105,12 @@ fun HistoryScreen(
                     .verticalScroll(rememberScrollState())
                     .weight(1f)){
                 HistorySewaContent() }
-            1 -> HistoryPointContent()
+            1 ->Column(
+                modifier = Modifier
+                    .padding(horizontal = 20.dp)
+                    .verticalScroll(rememberScrollState())
+                    .weight(1f)){
+                HistoryPointContent()}
         }
     }
 }
@@ -150,13 +160,62 @@ fun HistorySewaContent(){
 
 @Composable
 fun HistoryPointContent(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ){
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
+
+    Row (
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(8.dp))
+            .background(GrayLight500)
+            .padding(18.dp)
     ) {
-        Text(stringResource(R.string.screen_history))
+        Text(
+            letterSpacing = 0.25.sp,
+            text = buildAnnotatedString {
+                append("Tukar point")
+                withStyle(style = SpanStyle(GreenColor500)  ){append("100")}},
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = Color.Black,
+                fontWeight = FontWeight.Medium,
+                fontSize = 14.sp,
+            ))
+        Text(
+            text = "13 April 2024 - 09.05",
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = Color.Black,
+                fontWeight = FontWeight.Medium,
+                fontSize = 10.sp,
+            ))
+    }
+    Spacer(modifier = modifier.height(10.dp))
+    Row (
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(8.dp))
+            .background(GrayLight500)
+            .padding(18.dp)
+    ) {
+        Text(
+            text = buildAnnotatedString {
+                append("Point bertambah")
+                withStyle(style = SpanStyle(BlueColor500)){append("100")}},
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = Color.Black,
+                fontWeight = FontWeight.Medium,
+                fontSize = 14.sp,
+            ))
+        Text(
+            text = "13 April 2024 - 09.05",
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = Color.Black,
+                fontWeight = FontWeight.Medium,
+                fontSize = 10.sp,
+            ))
     }
 }
 
