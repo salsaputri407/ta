@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -16,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -26,6 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.tugasakhir.model.NavigationItem
 import com.example.tugasakhir.navigation.Screen
+import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.screen.HistoryScreen
 import com.example.tugasakhir.view.screen.HomeScreen
@@ -148,7 +151,8 @@ fun BottomBar(
                 icon = {
                     Icon(
                         imageVector = item.icon,
-                        contentDescription = item.title
+                        contentDescription = item.title,
+                        tint = BlueColor500
                     )
                 },
                 label = {
@@ -163,7 +167,8 @@ fun BottomBar(
                         restoreState = true
                         launchSingleTop = true
                     }
-                })
+                }
+            )
         }
     }
 }
