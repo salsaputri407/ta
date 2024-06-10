@@ -43,7 +43,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun WheelspinScreen(
+fun WheelSpinScreen(
     modifier: Modifier = Modifier
 ) {
     val textList by remember { mutableStateOf(
@@ -295,6 +295,6 @@ private fun WheelSpinPreview() {
 @Composable
 private fun WheelspinScreenPreview() {
     TugasAkhirTheme {
-        WheelspinScreen()
+        WheelSpinScreen()
     }
 }
