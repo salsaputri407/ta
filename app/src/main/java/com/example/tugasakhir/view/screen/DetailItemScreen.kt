@@ -151,13 +151,13 @@ fun DetailBarangContent(
                     .padding(horizontal = 20.dp, vertical = 15.dp)
             ) {
                 Text(
-                    text = "Waktu",
+                    text = "Status Barang",
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Medium,
                         fontSize = 14.sp,
                     ))
                 Text(
-                    text = "15 Menit",
+                    text = "Tersedia",
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Medium,
                         fontSize = 14.sp,

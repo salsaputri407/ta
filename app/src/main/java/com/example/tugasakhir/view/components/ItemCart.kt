@@ -3,10 +3,12 @@ package com.example.tugasakhir.view.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,15 +16,22 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -31,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 
 @Composable
@@ -38,22 +48,38 @@ fun ItemCart(
     image: Int,
     title: String,
     type: String,
+    selected: Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ){
     Row (
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
-            .background(color = MaterialTheme.colorScheme.background)
-            .padding(15.dp)
+            .clickable { onClick() }
+            .border(
+                width = 2.dp,
+                color = if (selected) BlueColor500 else BlueColor500.copy(alpha = 0.2f),
+                shape = RoundedCornerShape(5.dp),
+            )
+            .background(color = Color.White)
+            .padding(horizontal = 10.dp, vertical = 12.dp)
+
     ){
+        IconButton(
+            modifier = Modifier,
+            onClick = onClick) {
+            Icon(
+                imageVector = Icons.Default.CheckCircle,
+                contentDescription = "Selectable Item Icon",
+                tint = if (selected) BlueColor500 else BlueColor500.copy(alpha = 0.2f),
+            )
+        }
         Image(
             painter = painterResource(id = image),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(90.dp)
+                .size(100.dp)
         )
         Column {
             Text(
@@ -95,10 +121,10 @@ fun ItemCart(
             imageVector = Icons.Default.Delete ,
             contentDescription = "Delete Item",
             tint = BlueColor500,
-            modifier= Modifier
-                .padding(start = 105.dp)
+            modifier = modifier
+                .padding(start = 28.dp)
                 .align(Alignment.Bottom)
-        )
+            )
     }
 }
 
@@ -106,9 +132,12 @@ fun ItemCart(
 @Preview(showBackground = true)
 fun ItemCartPreview() {
     TugasAkhirTheme{
+        var selected by remember { mutableStateOf(false) }
         ItemCart(
+            selected = selected,
             image = R.drawable.sepeda1,
             title = "Sepeda Listrik",
-            type = "Biru")
+            type = "Biru",
+            onClick = {selected = !selected} )
     }
 }
