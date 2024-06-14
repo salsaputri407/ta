@@ -136,8 +136,9 @@ private fun Header(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.End,){
             Text(text = "0")
+            Spacer(modifier = modifier.padding(2.dp))
             Icon(
-                imageVector = Icons.Filled.Star,
+                painter = painterResource(id = R.drawable.gift),
                 contentDescription = null,
                 tint = BlueColor500
             )

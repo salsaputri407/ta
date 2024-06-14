@@ -49,12 +49,14 @@ fun DetailBarangScreen(
     image: Int?,
     title: String?,
     navigateBack: () -> Unit,
+    navigateToCartItemScreen: () -> Unit = {},
 ){
     DetailBarangContent(
         image = image ?: R.drawable.sepeda1,
         title = title ?: "Biru",
         onBackClick = {navigateBack()},
-        onAddToCart = {}
+        onAddToCart = {},
+        navigateToCartItemScreen = navigateToCartItemScreen
     )
 }
 
@@ -65,6 +67,7 @@ fun DetailBarangContent(
     title: String,
     onBackClick: () -> Unit,
     onAddToCart: (count: Int) -> Unit,
+    navigateToCartItemScreen: () -> Unit = {},
     modifier: Modifier = Modifier,
 ){
     Column {
@@ -172,7 +175,7 @@ fun DetailBarangContent(
         Column (modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp)) {
             ActionButton(
                 text = stringResource(id = R.string.button_keranjang),
-                onClick = {},
+                onClick = {navigateToCartItemScreen()},
             )
         }
     }

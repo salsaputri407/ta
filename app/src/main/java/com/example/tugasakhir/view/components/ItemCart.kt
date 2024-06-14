@@ -118,11 +118,11 @@ fun ItemCart(
             }
         }
         Icon(
-            imageVector = Icons.Default.Delete ,
+            painter = painterResource(id = R.drawable.trash) ,
             contentDescription = "Delete Item",
             tint = BlueColor500,
             modifier = modifier
-                .padding(start = 28.dp)
+                .padding(start = 25.dp)
                 .align(Alignment.Bottom)
             )
     }

@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
@@ -29,6 +30,7 @@ import androidx.navigation.navArgument
 import com.example.tugasakhir.model.NavigationItem
 import com.example.tugasakhir.navigation.Screen
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.GrayLight500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.screen.HistoryScreen
 import com.example.tugasakhir.view.screen.HomeScreen
@@ -67,9 +69,7 @@ fun App(
                 HomeScreen(
                     navigateToWheelspinScreen = { navController.navigate(Screen.Spinner.route) },
                     navigateToItemScreen = {navController.navigate(Screen.Item.route){
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
+                        popUpTo(navController.graph.findStartDestination().id) { saveState = true }
                         restoreState = true
                         launchSingleTop = true
                         }
@@ -95,7 +95,12 @@ fun App(
                 val barangId = backStackEntry.arguments?.getLong("barangId")
                 val image = backStackEntry.arguments?.getInt("image")
                 val title = backStackEntry.arguments?.getString("title")
-                DetailBarangScreen(barangId = barangId, image = image, title = title, navigateBack = {navController.navigateUp()})
+                DetailBarangScreen(
+                    barangId = barangId,
+                    image = image,
+                    title = title,
+                    navigateBack = {navController.navigateUp()},
+                    navigateToCartItemScreen = {navController.navigate(Screen.Cart.route)})
             }
             composable(Screen.History.route) {
                 HistoryScreen()
@@ -141,34 +146,40 @@ fun BottomBar(
         val navigationItems = listOf(
             NavigationItem(
                 title = stringResource(id = R.string.menu_home),
-                icon = Icons.Default.Home,
+                iconSelected = painterResource(id = R.drawable.beranda),
+                iconUnselected = painterResource(id = R.drawable.beranda_outline),
                 screen = Screen.Home
             ),
             NavigationItem(
                 title = stringResource(id = R.string.menu_barang),
-                icon = Icons.Default.Favorite,
+                iconSelected = painterResource(id = R.drawable.delivery_full),
+                iconUnselected = painterResource(id = R.drawable.delivery_outline),
                 screen = Screen.Item
             ),
             NavigationItem(
                 title = stringResource(id = R.string.menu_riwayat),
-                icon = Icons.Default.ShoppingCart,
+                iconSelected = painterResource(id = R.drawable.document_full),
+                iconUnselected = painterResource(id = R.drawable.document_outline),
                 screen = Screen.History
             ),
 
             )
         navigationItems.map { item ->
+            val selected = currentRoute == item.screen.route
             NavigationBarItem(
                 icon = {
                     Icon(
-                        imageVector = item.icon,
+                        painter = if (selected) item.iconSelected else item.iconUnselected,
                         contentDescription = item.title,
-                        tint = BlueColor500
+                        tint = if (selected) BlueColor500 else Color.LightGray
                     )
                 },
                 label = {
-                    Text(item.title)
+                    Text(
+                        text = item.title,
+                        color =if (selected) BlueColor500 else Color.LightGray)
                 },
-                selected = currentRoute == item.screen.route,
+                selected = selected,
                 onClick = {
                     navController.navigate(item.screen.route) {
                         popUpTo(navController.graph.findStartDestination().id) {
