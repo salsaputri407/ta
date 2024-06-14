@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.GrayLight500
 import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.ActionButton
@@ -65,7 +66,7 @@ fun ReedemPointScreen(
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
-            .background(Color.LightGray))
+            .background(PastelBlueColor500))
         Column (
             modifier= Modifier
                 .verticalScroll(rememberScrollState())
@@ -76,9 +77,11 @@ fun ReedemPointScreen(
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
-            .background(Color.LightGray))
+            .background(PastelBlueColor500))
         Column (
-            modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp),) {
+            modifier= Modifier
+                .background(Color.White)
+                .padding(horizontal = 30.dp, vertical = 20.dp),) {
 //            Button(
 //                onClick = {navigateToDetailCheckoutScreen()},
 //                shape = RoundedCornerShape(8.dp),
@@ -107,7 +110,7 @@ private fun TopAppBar(
 ) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = Color.White,
             navigationIconContentColor = MaterialTheme.colorScheme.primary
         ),
         navigationIcon = {
@@ -170,7 +173,7 @@ fun ReedemContent(){
         )
         Button(
             onClick = { selectedreward1 = !selectedreward1 },
-            border = if (selectedreward1) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, Color.LightGray),
+            border = if (selectedreward1) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, PastelBlueColor500),
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = if (selectedreward1) PastelBlueColor500 else Color.White,
@@ -187,12 +190,12 @@ fun ReedemContent(){
                 Text(
                     text = "5 Menit",
                     style = MaterialTheme.typography.titleSmall.copy(
-                    color= if (selectedreward1) BlueColor500 else Color.LightGray,
+                    color= if (selectedreward1) BlueColor500 else PastelBlueColor500,
                     fontSize = 12.sp))
                 Text(
                     text = "50 Point",
                     style = MaterialTheme.typography.titleSmall.copy(
-                        color= if (selectedreward1) BlueColor500 else Color.LightGray,
+                        color= if (selectedreward1) BlueColor500 else PastelBlueColor500,
                         fontSize = 12.sp))
             }
 
@@ -200,11 +203,11 @@ fun ReedemContent(){
         Spacer(Modifier.height(10.dp))
         Button(
             onClick = { selectedreward2 = !selectedreward2 },
-            border = if (selectedreward2) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, Color.LightGray),
+            border = if (selectedreward2) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, PastelBlueColor500),
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = if (selectedreward2) PastelBlueColor500 else Color.White,
-                contentColor = if (selectedreward2) BlueColor500 else Color.LightGray
+                contentColor = if (selectedreward2) BlueColor500 else PastelBlueColor500
             ),
             modifier = Modifier
                 .height(35.dp)
@@ -217,12 +220,10 @@ fun ReedemContent(){
                 Text(
                     text = "10 Menit",
                     style = MaterialTheme.typography.titleSmall.copy(
-                        color= if (selectedreward2) BlueColor500 else Color.LightGray,
                         fontSize = 12.sp))
                 Text(
                     text = "100 Point",
                     style = MaterialTheme.typography.titleSmall.copy(
-                        color= if (selectedreward2) BlueColor500 else Color.LightGray,
                         fontSize = 12.sp))
             }
 

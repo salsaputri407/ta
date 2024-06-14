@@ -2,6 +2,7 @@ package com.example.tugasakhir.view.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,60 +39,63 @@ fun Spinner(
     desc: String,
     navigateToWheelspinScreen: () -> Unit = {}
 ){
-    Row (
-        modifier= modifier
-            .fillMaxWidth()
-            .background(color = MaterialTheme.colorScheme.background)
-            .padding(18.dp)
-    ){
-        Surface (
+    Row (modifier=modifier.padding(18.dp)){
+        Row (
             modifier= modifier
-                .clip(RoundedCornerShape(8.dp, 0.dp, 0.dp, 8.dp))
-                .background(color = BlueColor500)
-                .padding(vertical = 4.dp, horizontal = 15.dp)
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(8.dp))
+                .background(color = MaterialTheme.colorScheme.background)
         ){
-            Image(
-                painter = painterResource(id = image),
-                contentDescription = "spinner",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(90.dp)
-                    .padding(4.dp)
-            )
-
-        }
-        Column {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
-                ),
-                modifier =  Modifier
-                    .padding(top= 17.dp, start = 10.dp),
-            )
-            Text(text = desc,
-                style = MaterialTheme.typography.bodySmall.copy(
-                    fontSize = 12.sp,
-                    color = MaterialTheme.colorScheme.secondary
-                ),
+            Box (
                 modifier= modifier
-                    .width(215.dp)
-                    .padding(top = 2.dp, start = 10.dp)
-            )
+                    .clip(RoundedCornerShape(8.dp, 0.dp, 0.dp, 8.dp))
+                    .background(color = BlueColor500)
+                    .padding(vertical = 4.dp, horizontal = 8.dp)
+            ){
+                Image(
+                    painter = painterResource(id = image),
+                    contentDescription = "spinner",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(90.dp)
+                        .padding(4.dp)
+                )
 
-        }
-        IconButton(
-            modifier= Modifier
-                .padding(start = 2.dp)
-                .align(Alignment.CenterVertically),
-            onClick = navigateToWheelspinScreen
-        ) {
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight ,
-                contentDescription = "right button",
-                tint = BlueColor500,
-            )
+            }
+            Column(
+                modifier =Modifier
+                    .padding(start = 8.dp, top = 18.dp))
+            {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                    ),
+                )
+                Text(text = desc,
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.secondary
+                    ),
+                    modifier= modifier
+                        .width(215.dp)
+                        .padding(top = 2.dp)
+                )
+
+            }
+            IconButton(
+                modifier= Modifier
+                    .padding(start = 2.dp, end = 4.dp)
+                    .align(Alignment.CenterVertically),
+                onClick = navigateToWheelspinScreen
+            ) {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight ,
+                    contentDescription = "right button",
+                    tint = BlueColor500,
+                )
+            }
         }
     }
 }

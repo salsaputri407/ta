@@ -59,7 +59,7 @@ fun DetailCheckContent(
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
-            .background(Color.LightGray))
+            .background(PastelBlueColor500))
         Information()
         SegmentText(title = stringResource(id = R.string.screen_barang))
         Column (
@@ -74,16 +74,20 @@ fun DetailCheckContent(
                 type = "Biru" )
             Spacer(modifier = Modifier
                 .fillMaxWidth()
-                .height(10.dp))
+                .height(15.dp))
             GetTime (navigateToReedemPointScreen = navigateToReedemPointScreen)
         }
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
-            .background(Color.LightGray))
-        Column (modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp)) {
-            ActionButton(text = stringResource(id = R.string.button_bermain), onClick = {
-            })
+            .background(PastelBlueColor500))
+        Column (
+            modifier= Modifier
+            .background(Color.White)
+            .padding(horizontal = 30.dp, vertical = 20.dp)) {
+            ActionButton(
+                text = stringResource(id = R.string.button_bermain),
+                onClick = {})
         }
     }
 }
@@ -96,7 +100,7 @@ private fun TopAppBar(
 ) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = Color.White,
             navigationIconContentColor = MaterialTheme.colorScheme.primary
         ),
         navigationIcon = {
@@ -129,7 +133,7 @@ fun Information()
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.background)
+                .background(Color.White)
                 .padding(20.dp)
         ){
             Column (
@@ -172,11 +176,11 @@ fun Information()
                     var selectedbutton2 by remember { mutableStateOf(false) }
                     Button(
                         onClick = { selectedbutton1 = !selectedbutton1 },
-                        border = if (selectedbutton1) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, Color.LightGray),
+                        border = if (selectedbutton1) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, PastelBlueColor500),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = if (selectedbutton1) PastelBlueColor500 else Color.White,
-                            contentColor = if (selectedbutton1) BlueColor500 else Color.LightGray
+                            contentColor = if (selectedbutton1) BlueColor500 else PastelBlueColor500
                         ),
                         modifier = Modifier
                             .wrapContentSize()
@@ -186,11 +190,11 @@ fun Information()
                     }
                     Button(
                         onClick = { selectedbutton2 = !selectedbutton2 },
-                        border = if (selectedbutton2) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, Color.LightGray),
+                        border = if (selectedbutton2) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, PastelBlueColor500),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = if (selectedbutton2) PastelBlueColor500 else Color.White,
-                            contentColor = if (selectedbutton2) BlueColor500 else Color.LightGray
+                            contentColor = if (selectedbutton2) BlueColor500 else PastelBlueColor500
                         ),
                         modifier = Modifier
                             .wrapContentSize()

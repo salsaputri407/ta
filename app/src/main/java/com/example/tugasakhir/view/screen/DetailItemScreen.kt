@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.view.components.ActionButton
 
 @Composable
@@ -73,7 +74,7 @@ fun DetailBarangContent(
     Column {
         TopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.background,
+                containerColor = Color.White,
                 navigationIconContentColor = MaterialTheme.colorScheme.primary
             ),
             navigationIcon = {
@@ -98,12 +99,13 @@ fun DetailBarangContent(
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
-            .background(Color.LightGray))
+            .background(PastelBlueColor500))
         Column (
             modifier= Modifier
-                .padding(20.dp)
                 .verticalScroll(rememberScrollState())
                 .weight(1f)
+                .padding(20.dp)
+
         ) {
             Box (
                 modifier = Modifier
@@ -119,7 +121,7 @@ fun DetailBarangContent(
                 )
                 Box (
                     modifier = Modifier
-                        .padding(top = 5.dp, start = 25.dp)
+                        .padding(vertical = 10.dp, horizontal = 25.dp,)
                         .background(Color.White)
                         .border(
                             2.dp,
@@ -171,8 +173,11 @@ fun DetailBarangContent(
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
-            .background(Color.LightGray))
-        Column (modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp)) {
+            .background(PastelBlueColor500))
+        Column (
+            modifier= Modifier
+                .background(Color.White)
+                .padding(horizontal = 30.dp, vertical = 20.dp)) {
             ActionButton(
                 text = stringResource(id = R.string.button_keranjang),
                 onClick = {navigateToCartItemScreen()},

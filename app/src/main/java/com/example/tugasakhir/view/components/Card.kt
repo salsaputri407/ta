@@ -30,14 +30,14 @@ import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 fun Card(
     modifier: Modifier = Modifier,
 ){
-    Surface (modifier=modifier
+    Row (modifier=modifier
         .padding(start = 18.dp, end = 18.dp)){
-        Box (
+        Row (
             modifier= modifier
                 .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.background)
                 .clip(RoundedCornerShape(8.dp))
                 .padding(top = 20.dp, bottom = 20.dp, start = 25.dp, end = 25.dp)
-                .background(MaterialTheme.colorScheme.background)
         ){
             Row (
                 verticalAlignment =  Alignment.CenterVertically,){

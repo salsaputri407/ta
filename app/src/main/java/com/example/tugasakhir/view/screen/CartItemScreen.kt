@@ -45,6 +45,7 @@ import com.example.tugasakhir.view.components.ActionButton
 import com.example.tugasakhir.view.components.ItemCart
 import com.example.tugasakhir.model.Barang
 import com.example.tugasakhir.model.Order
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 
 @Composable
 fun CartItemScreen(
@@ -58,7 +59,7 @@ fun CartItemScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(2.dp)
-                .background(Color.LightGray)
+                .background(PastelBlueColor500)
         )
         Column(
             modifier = Modifier
@@ -72,10 +73,11 @@ fun CartItemScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(2.dp)
-                .background(Color.LightGray)
+                .background(PastelBlueColor500)
         )
         Column(
             modifier = Modifier
+                .background(Color.White)
                 .padding(horizontal = 30.dp, vertical = 20.dp)
         ) {
             ActionButton(
@@ -114,7 +116,7 @@ private fun TopAppBar(
 ) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = Color.White,
             navigationIconContentColor = MaterialTheme.colorScheme.primary
         ),
         navigationIcon = {

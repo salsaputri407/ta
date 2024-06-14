@@ -24,7 +24,7 @@ private val DarkColorScheme = darkColorScheme(
     onSecondary = BabyBlueColor500,
     onTertiary = PastelBlueColor500,
     onBackground = PureWhite200,
-    background = GrayLight500,
+    background = Background500,
     surface = GrayLight500,
 )
 
@@ -37,7 +37,7 @@ private val LightColorScheme = lightColorScheme(
     onSecondary = BabyBlueColor500,
     onTertiary = PastelBlueColor500,
     onBackground = PureWhite200,
-    background = GrayLight500,
+    background = Background500,
     surface = GrayLight500,
 
     /* Other default colors to override

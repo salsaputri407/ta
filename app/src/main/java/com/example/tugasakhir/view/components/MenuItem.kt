@@ -1,6 +1,7 @@
 package com.example.tugasakhir.view.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -37,6 +38,7 @@ fun MenuItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier= modifier
             .clip(RoundedCornerShape(8.dp))
+            .background(color = MaterialTheme.colorScheme.background)
     ){
         Image(
             painter = painterResource(id = menu.image),

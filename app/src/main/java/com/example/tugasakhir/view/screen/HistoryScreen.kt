@@ -51,9 +51,11 @@ import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
 import com.example.tugasakhir.model.dummyMainan
 import com.example.tugasakhir.model.dummySepeda
+import com.example.tugasakhir.ui.theme.Background500
 import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.GrayLight500
 import com.example.tugasakhir.ui.theme.GreenColor500
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.HistoryItem
 
@@ -67,7 +69,7 @@ fun HistoryScreen(
     Column {
         TopAppBar(
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.background,
+                containerColor = Color.White,
                 navigationIconContentColor = MaterialTheme.colorScheme.primary
             ),
             title = {
@@ -83,7 +85,7 @@ fun HistoryScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(2.dp)
-                .background(Color.LightGray)
+                .background(PastelBlueColor500)
         )
         Row(
             horizontalArrangement = Arrangement.spacedBy(55.dp),
@@ -138,7 +140,7 @@ private fun TabLayout(
                 .background(BlueColor500)
             else Modifier
                 .clip(RoundedCornerShape(20))
-                .background(Color.White),
+                .background(Background500),
             text = { Text(text= title, color = if (selected) Color.White else Color.Black)  },
             selected = selected,
             onClick = {onTabSelected(index)}
@@ -169,7 +171,7 @@ fun HistoryPointContent(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(GrayLight500)
+            .background(Color.White)
             .padding(18.dp)
     ) {
         Text(
@@ -197,7 +199,7 @@ fun HistoryPointContent(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(GrayLight500)
+            .background(Color.White)
             .padding(18.dp)
     ) {
         Text(
