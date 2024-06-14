@@ -12,12 +12,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,8 +32,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,6 +47,8 @@ import com.commandiron.spin_wheel_compose.state.SpinWheelState
 import com.commandiron.spin_wheel_compose.state.rememberSpinWheelState
 import com.example.tugasakhir.R
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.GrayLight500
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.ActionButton
 import kotlinx.coroutines.CoroutineScope
@@ -72,15 +81,13 @@ fun WheelSpinScreen(
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .padding(horizontal = 20.dp, vertical = 15.dp)
         ) {
             Header(onBackClick = {navigateBack()})
-            Spacer(modifier = Modifier.height(40.dp))
             Title()
-            Spacer(modifier = Modifier.height(40.dp))
             Column(
+                verticalArrangement = Arrangement.Center,
                 modifier = Modifier
-                    .padding(20.dp)
+                    .padding(horizontal = 40.dp)
                     .weight(1f)
             ) {
                 WheelSpin(
@@ -92,14 +99,16 @@ fun WheelSpinScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(2.dp)
-                    .background(Color.LightGray)
+                    .background(PastelBlueColor500)
             )
-            SpinButton(
-                state = state,
-                scope = scope,
-                getPoint = { point = textList[it].toInt() },
-                showOverlay = { showOverlay = it }
-            )
+            Column (modifier =Modifier.background(Color.White)){
+                SpinButton(
+                    state = state,
+                    scope = scope,
+                    getPoint = { point = textList[it].toInt() },
+                    showOverlay = { showOverlay = it }
+                )
+            }
         }
         if (showOverlay) {
             Overlay(
@@ -120,7 +129,7 @@ private fun Header(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 15.dp, vertical = 15.dp),
+            .padding(horizontal = 20.dp, vertical = 20.dp),
     ) {
         Icon(
             modifier = Modifier
@@ -130,7 +139,11 @@ private fun Header(
             contentDescription = "Left Navigation Icon"
         )
         Text(
-            text = "Selamat Datang!"
+            text = "Selamat Datang!",
+            style = MaterialTheme.typography.titleMedium.copy(
+                fontWeight = FontWeight.Medium,
+                fontSize = 14.sp
+            )
         )
         Row (
             verticalAlignment = Alignment.CenterVertically,
@@ -156,27 +169,41 @@ fun Overlay(
         modifier = modifier
             .fillMaxSize()
             .background(Color.Black.copy(alpha = 0.5f))
-            .padding(18.dp),
+            .padding(30.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(
             modifier = modifier
                 .size(400.dp)
+                .clip(RoundedCornerShape(8.dp))
                 .background(Color.White)
-                .padding(horizontal = 30.dp, vertical = 20.dp),
+                .padding(horizontal = 25.dp, vertical = 10.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Selamat")
-            Text(text = "Anda mendapatkan $point!")
+            Text(
+                text = "Selamat",
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 30.sp))
+            Text(
+                text = "Anda mendapatkan $point!",
+                style = MaterialTheme.typography.titleMedium.copy(
+                    color = GrayLight500,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp))
             Image(
                 painter = painterResource(R.drawable.point),
-                contentDescription = ""
+                contentDescription = "point"
             )
-            ActionButton(
-                text = "Kembali",
-                onClick = { showOverlay(false) },
-            )
+           Column (modifier= Modifier
+               .padding(top = 20.dp)
+               .width(150.dp)){
+               ActionButton(
+                   text = "Terima",
+                   onClick = { showOverlay(false) },
+               )
+           }
         }
     }
 }
@@ -193,13 +220,20 @@ private fun Title(
     ) {
         Text(
             text = "Spin the Wheel",
-            fontSize = 30.sp
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = BlueColor500,
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+        ),
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             text = "Kumpulkan point dengan 2 kali kesempatan dan tukar pointmu dengan waktu bermain gratis",
             textAlign = TextAlign.Center,
-            fontSize = 10.sp
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = GrayLight500,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Medium,)
         )
     }
 }
@@ -261,7 +295,24 @@ private fun WheelSpin(
     ) { pieIndex ->
         Text(
             text = textList[pieIndex],
-            fontSize = 20.sp
+            color = Color.DarkGray,
+            modifier = modifier
+                .offset(
+                    x = 2.dp,
+                    y = 2.5.dp
+                )
+                .alpha(0.5f),
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 21.sp,)
+        )
+        Text(
+            text = textList[pieIndex],
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 21.sp,)
         )
     }
 }

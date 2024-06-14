@@ -37,11 +37,12 @@ fun DetailCart(
     modifier: Modifier = Modifier,
 ){
     Row (
+        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
             .background(color = MaterialTheme.colorScheme.background)
-            .padding(15.dp)
+            .padding(horizontal = 15.dp, vertical = 10.dp)
     ){
         Image(
             painter = painterResource(id = image),
@@ -54,8 +55,8 @@ fun DetailCart(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp
                 ),
                 modifier =  Modifier
                     .padding(top= 2.dp, start = 25.dp),

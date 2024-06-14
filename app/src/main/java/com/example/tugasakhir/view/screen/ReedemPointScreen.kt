@@ -47,6 +47,7 @@ import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.ActionButton
 import com.example.tugasakhir.view.components.AlertDialog
+import com.example.tugasakhir.view.components.ReedemPoint
 
 @Composable
 fun ReedemPointScreen(
@@ -63,10 +64,7 @@ fun ReedemPointScreen(
 
     Column {
         TopAppBar(onBackClick = {navigateBack()})
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(2.dp)
-            .background(PastelBlueColor500))
+
         Column (
             modifier= Modifier
                 .verticalScroll(rememberScrollState())
@@ -106,12 +104,13 @@ fun ReedemPointScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopAppBar(
+    modifier: Modifier= Modifier,
     onBackClick: () -> Unit,
 ) {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = Color.White,
-            navigationIconContentColor = MaterialTheme.colorScheme.primary
+            navigationIconContentColor = MaterialTheme.colorScheme.primary,
         ),
         navigationIcon = {
             Icon(
@@ -131,7 +130,10 @@ private fun TopAppBar(
                     fontSize = 14.sp,
                 )
             )
-        })
+        },
+        modifier = modifier
+            .border(2.dp, PastelBlueColor500),
+    )
 }
 
 @Composable
@@ -171,63 +173,9 @@ fun ReedemContent(){
             ),
             modifier= Modifier.padding(bottom = 7.dp)
         )
-        Button(
-            onClick = { selectedreward1 = !selectedreward1 },
-            border = if (selectedreward1) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, PastelBlueColor500),
-            shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = if (selectedreward1) PastelBlueColor500 else Color.White,
-                contentColor = if (selectedreward1) BlueColor500 else Color.LightGray
-            ),
-            modifier = Modifier
-                .height(35.dp)
-        ) {
-            Row (
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "5 Menit",
-                    style = MaterialTheme.typography.titleSmall.copy(
-                    color= if (selectedreward1) BlueColor500 else PastelBlueColor500,
-                    fontSize = 12.sp))
-                Text(
-                    text = "50 Point",
-                    style = MaterialTheme.typography.titleSmall.copy(
-                        color= if (selectedreward1) BlueColor500 else PastelBlueColor500,
-                        fontSize = 12.sp))
-            }
-
-        }
+        ReedemPoint(time = "5 Menit", point = "50 Point", selected = selectedreward1, onClick = { selectedreward1 = !selectedreward1})
         Spacer(Modifier.height(10.dp))
-        Button(
-            onClick = { selectedreward2 = !selectedreward2 },
-            border = if (selectedreward2) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, PastelBlueColor500),
-            shape = RoundedCornerShape(8.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = if (selectedreward2) PastelBlueColor500 else Color.White,
-                contentColor = if (selectedreward2) BlueColor500 else PastelBlueColor500
-            ),
-            modifier = Modifier
-                .height(35.dp)
-        ) {
-            Row (
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "10 Menit",
-                    style = MaterialTheme.typography.titleSmall.copy(
-                        fontSize = 12.sp))
-                Text(
-                    text = "100 Point",
-                    style = MaterialTheme.typography.titleSmall.copy(
-                        fontSize = 12.sp))
-            }
-
-        }
+        ReedemPoint(time = "10 Menit", point = "100 Point", selected = selectedreward2, onClick = { selectedreward2 = !selectedreward2})
     }
 }
 

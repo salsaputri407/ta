@@ -1,6 +1,7 @@
 package com.example.tugasakhir.view.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -55,12 +56,6 @@ fun CartItemScreen(
 ) {
     Column(modifier = modifier) {
         TopAppBar(onBackClick = {navigateBack()})
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(2.dp)
-                .background(PastelBlueColor500)
-        )
         Column(
             modifier = Modifier
                 .padding(vertical = 20.dp, horizontal = 20.dp)
@@ -112,6 +107,7 @@ fun CartItemContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopAppBar(
+    modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
 ) {
     TopAppBar(
@@ -137,7 +133,10 @@ private fun TopAppBar(
                     fontSize = 14.sp,
                 )
             )
-        })
+        },
+        modifier = modifier
+            .border(2.dp, PastelBlueColor500),
+        )
 }
 
 @Preview(showBackground = true)

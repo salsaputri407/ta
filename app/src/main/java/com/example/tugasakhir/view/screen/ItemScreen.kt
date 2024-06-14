@@ -68,12 +68,6 @@ fun ItemScreen(
 
     Column(modifier = modifier) {
         TopAppBar(navigateToCartItemScreen=navigateToCartItemScreen)
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(2.dp)
-                .background(PastelBlueColor500)
-        )
         Row(
             horizontalArrangement = Arrangement.spacedBy(55.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -120,7 +114,9 @@ private fun TopAppBar(
                     tint = BlueColor500
                 )
             }
-        }
+        },
+        modifier = modifier
+            .border(2.dp, PastelBlueColor500),
     )
 }
 

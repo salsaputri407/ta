@@ -2,6 +2,7 @@ package com.example.tugasakhir.view.screen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -56,10 +57,6 @@ fun DetailCheckContent(
 ){
     Column {
         TopAppBar(onBackClick = {navigateBack()})
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(2.dp)
-            .background(PastelBlueColor500))
         Information()
         SegmentText(title = stringResource(id = R.string.screen_barang))
         Column (
@@ -96,6 +93,7 @@ fun DetailCheckContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopAppBar(
+    modifier: Modifier = Modifier,
     onBackClick: () -> Unit,
 ) {
     TopAppBar(
@@ -121,7 +119,9 @@ private fun TopAppBar(
                     fontSize = 14.sp,
                 )
             )
-        })
+        },
+        modifier = modifier
+            .border(2.dp, PastelBlueColor500),)
 }
 
 @Composable

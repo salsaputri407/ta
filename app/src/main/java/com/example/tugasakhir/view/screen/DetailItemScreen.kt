@@ -95,11 +95,10 @@ fun DetailBarangContent(
                         fontSize = 14.sp,
                     )
                 )
-            })
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(2.dp)
-            .background(PastelBlueColor500))
+            },
+            modifier = modifier
+                .border(2.dp, PastelBlueColor500),
+            )
         Column (
             modifier= Modifier
                 .verticalScroll(rememberScrollState())

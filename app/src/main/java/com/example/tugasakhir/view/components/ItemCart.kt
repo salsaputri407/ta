@@ -55,6 +55,7 @@ fun ItemCart(
     Row (
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
+            .fillMaxWidth()
             .clickable { onClick() }
             .border(
                 width = 2.dp,
@@ -85,8 +86,8 @@ fun ItemCart(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp
                 ),
                 modifier =  Modifier
                     .padding(top= 2.dp, start = 25.dp),
@@ -122,7 +123,7 @@ fun ItemCart(
             contentDescription = "Delete Item",
             tint = BlueColor500,
             modifier = modifier
-                .padding(start = 25.dp)
+                .padding(start = 35.dp)
                 .align(Alignment.Bottom)
             )
     }

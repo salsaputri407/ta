@@ -1,6 +1,8 @@
 package com.example.tugasakhir
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
@@ -14,10 +16,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -31,6 +35,7 @@ import com.example.tugasakhir.model.NavigationItem
 import com.example.tugasakhir.navigation.Screen
 import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.GrayLight500
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.screen.HistoryScreen
 import com.example.tugasakhir.view.screen.HomeScreen
@@ -140,6 +145,7 @@ fun BottomBar(
     NavigationBar(
         containerColor = Color.White,
         modifier = modifier
+            .border(2.dp, PastelBlueColor500)
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route

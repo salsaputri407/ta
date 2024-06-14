@@ -80,13 +80,9 @@ fun HistoryScreen(
                         fontSize = 14.sp,),
                     modifier = Modifier.padding(start = 8.dp)
                 )
-            })
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(2.dp)
-                .background(PastelBlueColor500)
-        )
+            },
+            modifier = modifier
+                .border(2.dp, PastelBlueColor500),)
         Row(
             horizontalArrangement = Arrangement.spacedBy(55.dp),
             verticalAlignment = Alignment.CenterVertically,

@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.GrayLight500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 
 @Composable
@@ -69,18 +70,18 @@ fun Spinner(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Medium,
                         fontSize = 20.sp,
                     ),
                 )
                 Text(text = desc,
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontSize = 12.sp,
-                        color = MaterialTheme.colorScheme.secondary
+                        color = GrayLight500
                     ),
                     modifier= modifier
                         .width(215.dp)
-                        .padding(top = 2.dp)
+                        .padding(top = 3.dp)
                 )
 
             }

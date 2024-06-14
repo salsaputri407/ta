@@ -21,11 +21,11 @@ fun SegmentText(
     Text(
         text = title,
         style = MaterialTheme.typography.headlineSmall.copy(
-            fontWeight = FontWeight.ExtraBold
+            fontWeight = FontWeight.Bold
         ),
-        fontSize = 18.sp,
+        fontSize = 14.sp,
         modifier=modifier
-            .padding(horizontal = 20.dp, vertical = 10.dp))
+            .padding(horizontal = 20.dp, vertical = 15.dp))
 }
 
 @Composable
