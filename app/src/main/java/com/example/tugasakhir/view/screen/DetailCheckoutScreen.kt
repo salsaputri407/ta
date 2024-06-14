@@ -203,10 +203,12 @@ fun Information()
         }
     }
 }
-//@Preview(showBackground = true)
-//@Composable
-//fun DetailCheckoutScreenPreview() {
-//    TugasAkhirTheme {
-//        DetailCheckContent()
-//    }
-//}
+@Preview(showBackground = true)
+@Composable
+fun DetailCheckoutScreenPreview() {
+    TugasAkhirTheme {
+        DetailCheckContent(
+            navigateBack = {},
+            navigateToReedemPointScreen = {})
+    }
+}

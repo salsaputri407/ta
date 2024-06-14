@@ -234,6 +234,6 @@ fun ReedemContent(){
 @Composable
 fun RedeemPointScreenPreview() {
     TugasAkhirTheme {
-        ReedemContent()
+        ReedemPointScreen {}
     }
 }

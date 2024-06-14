@@ -138,18 +138,10 @@ private fun TopAppBar(
         })
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun CartItemContentPreview() {
-//    TugasAkhirTheme {
-//        CartItemContent()
-//    }
-//}
-
-//@Preview(showBackground = true)
-//@Composable
-//fun CartItemScreenPreview() {
-//    TugasAkhirTheme {
-//        CartItemScreen()
-//    }
-//}
+@Preview(showBackground = true)
+@Composable
+fun CartItemScreenPreview() {
+    TugasAkhirTheme {
+        CartItemScreen {}
+    }
+}

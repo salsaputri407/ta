@@ -1,10 +1,13 @@
 package com.example.tugasakhir.view.screen
 
+import android.media.Image
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -13,6 +16,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -30,10 +34,12 @@ import com.example.tugasakhir.view.components.Spinner
 
 @Composable
 fun HomeScreen(
-    navigateToWheelspinScreen: () -> Unit = {}
+    navigateToWheelspinScreen: () -> Unit = {},
+    navigateToItemScreen: () -> Unit = {}
 ){
     HomeContent(
-        navigateToWheelspinScreen = navigateToWheelspinScreen
+        navigateToWheelspinScreen = navigateToWheelspinScreen,
+        navigateToItemScreen = navigateToItemScreen
     )
 }
 
@@ -55,23 +61,35 @@ fun Banner(
 
 @Composable
 fun Menu(
-    listMenu: List<Menu>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToItemScreen: () -> Unit = {}
 ) {
-    LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        modifier = modifier
-    ) {
-        items(listMenu, key = {it.title }) { menu ->
-            MenuItem(menu = menu)
-        }
+    Row (
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 15.dp)) {
+        MenuItem(
+            navigateToItemScreen = navigateToItemScreen,
+            menu = com.example.tugasakhir.model.Menu(
+                image = R.drawable.menu1,
+                title = "Sepeda Listrik"
+            )
+        )
+        MenuItem(
+            navigateToItemScreen = navigateToItemScreen,
+            menu = com.example.tugasakhir.model.Menu(
+                image = R.drawable.menu2,
+                title = "Mainan Anak"
+            )
+        )
     }
 }
 
 @Composable
 fun HomeContent(
-    navigateToWheelspinScreen: () -> Unit = {}
+    navigateToWheelspinScreen: () -> Unit = {},
+    navigateToItemScreen: () -> Unit = {}
 ){
     Column (
         modifier = Modifier
@@ -81,7 +99,7 @@ fun HomeContent(
         Card()
         HomeSegment(
             title = stringResource(id = R.string.section_menu),
-            content = { Menu(listMenu = dummyMenu) })
+            content = { Menu(navigateToItemScreen=navigateToItemScreen) })
         Spinner(
             image = R.drawable.spinner,
             title = "Spin the Wheel",

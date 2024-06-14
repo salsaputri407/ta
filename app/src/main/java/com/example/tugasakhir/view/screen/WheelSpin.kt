@@ -3,6 +3,7 @@ package com.example.tugasakhir.view.screen
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -37,6 +39,7 @@ import com.commandiron.spin_wheel_compose.SpinWheelDefaults
 import com.commandiron.spin_wheel_compose.state.SpinWheelState
 import com.commandiron.spin_wheel_compose.state.rememberSpinWheelState
 import com.example.tugasakhir.R
+import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 import com.example.tugasakhir.view.components.ActionButton
 import kotlinx.coroutines.CoroutineScope
@@ -44,7 +47,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun WheelSpinScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateBack: () -> Unit,
 ) {
     val textList by remember { mutableStateOf(
         listOf("50", "25", "LOSE", "100", "LOSE", "50", "25", "LOSE")
@@ -70,7 +74,7 @@ fun WheelSpinScreen(
                 .fillMaxSize()
                 .padding(horizontal = 20.dp, vertical = 15.dp)
         ) {
-            Header()
+            Header(onBackClick = {navigateBack()})
             Spacer(modifier = Modifier.height(40.dp))
             Title()
             Spacer(modifier = Modifier.height(40.dp))
@@ -108,24 +112,34 @@ fun WheelSpinScreen(
 
 @Composable
 private fun Header(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onBackClick: () -> Unit,
 ) {
     Row(
         verticalAlignment =  Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 15.dp),
+            .padding(horizontal = 15.dp, vertical = 15.dp),
     ) {
+        Icon(
+            modifier = Modifier
+                .clickable { onBackClick()},
+            imageVector = Icons.Filled.KeyboardArrowLeft,
+            tint = BlueColor500,
+            contentDescription = "Left Navigation Icon"
+        )
         Text(
             text = "Selamat Datang!"
         )
-        Row ( verticalAlignment = Alignment.CenterVertically,
+        Row (
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.End,){
             Text(text = "0")
             Icon(
                 imageVector = Icons.Filled.Star,
-                contentDescription = null
+                contentDescription = null,
+                tint = BlueColor500
             )
         }
     }
@@ -263,7 +277,7 @@ private fun OverlayPreview() {
 @Composable
 private fun HeaderPreview() {
     TugasAkhirTheme {
-        Header()
+        Header(onBackClick = {})
     }
 }
 
@@ -295,6 +309,6 @@ private fun WheelSpinPreview() {
 @Composable
 private fun WheelspinScreenPreview() {
     TugasAkhirTheme {
-        WheelSpinScreen()
+        WheelSpinScreen(navigateBack = {})
     }
 }

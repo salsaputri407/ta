@@ -65,7 +65,15 @@ fun App(
         ) {
             composable(Screen.Home.route) {
                 HomeScreen(
-                    navigateToWheelspinScreen = { navController.navigate(Screen.Spinner.route) }
+                    navigateToWheelspinScreen = { navController.navigate(Screen.Spinner.route) },
+                    navigateToItemScreen = {navController.navigate(Screen.Item.route){
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        restoreState = true
+                        launchSingleTop = true
+                        }
+                    }
                 )
             }
             composable(Screen.Item.route) {
@@ -105,7 +113,9 @@ fun App(
                 )
             }
             composable(Screen.Spinner.route) {
-                WheelSpinScreen()
+                WheelSpinScreen(
+                    navigateBack = {navController.navigateUp()},
+                )
             }
             composable(Screen.Reedem.route){
                 ReedemPointScreen(

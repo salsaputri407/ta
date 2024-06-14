@@ -173,13 +173,6 @@ fun BarangContent(
     }
 }
 
-//@Preview
-//@Composable
-//private fun TitleBarPreview() {
-//    TugasAkhirTheme {
-//        TopAppBar()
-//    }
-//}
 
 @Preview
 @Composable

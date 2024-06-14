@@ -30,6 +30,7 @@ import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 fun MenuItem(
     menu: Menu,
     modifier: Modifier = Modifier,
+    navigateToItemScreen: () -> Unit = {}
 ){
     Column (
         verticalArrangement = Arrangement.Center,
@@ -46,7 +47,7 @@ fun MenuItem(
                 .width(175.dp)
         )
         Button(
-            onClick = {},
+            onClick = {navigateToItemScreen()},
             shape= RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(BlueColor500),
             modifier = modifier
