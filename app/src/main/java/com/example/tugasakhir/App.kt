@@ -2,27 +2,20 @@ package com.example.tugasakhir
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -32,19 +25,23 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.tugasakhir.model.NavigationItem
+import com.example.tugasakhir.model.TimerState
 import com.example.tugasakhir.navigation.Screen
 import com.example.tugasakhir.ui.theme.BlueColor500
-import com.example.tugasakhir.ui.theme.GrayLight500
 import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
-import com.example.tugasakhir.view.screen.HistoryScreen
-import com.example.tugasakhir.view.screen.HomeScreen
-import com.example.tugasakhir.view.screen.ItemScreen
+import com.example.tugasakhir.view.screen.BadgeScreen
 import com.example.tugasakhir.view.screen.CartItemScreen
 import com.example.tugasakhir.view.screen.DetailBarangScreen
 import com.example.tugasakhir.view.screen.DetailCheckContent
+import com.example.tugasakhir.view.screen.HistoryScreen
+import com.example.tugasakhir.view.screen.HomeScreen
+import com.example.tugasakhir.view.screen.ItemScreen
 import com.example.tugasakhir.view.screen.ReedemPointScreen
 import com.example.tugasakhir.view.screen.WheelSpinScreen
+import com.example.tugasakhir.view.timer.TimerScreen
+import com.example.tugasakhir.view.timer.TimerViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun App(
@@ -53,6 +50,8 @@ fun App(
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val timerViewModel: TimerViewModel = koinViewModel()
+    val timerState by timerViewModel.timerState.observeAsState(TimerState())
 
     Scaffold(
         bottomBar = {
@@ -112,14 +111,17 @@ fun App(
             }
             composable(Screen.Cart.route) {
                 CartItemScreen(
-                    navigateBack = {navController.navigateUp()},
-                    navigateToDetailCheckoutScreen = { navController.navigate(Screen.Checkout.route)}
+                    navigateBack = { navController.navigateUp() },
+                    navigateToDetailCheckoutScreen = { navController.navigate(Screen.Checkout.route) }
                 )
             }
             composable(Screen.Checkout.route) {
                 DetailCheckContent(
-                    navigateBack = {navController.navigateUp()},
-                    navigateToReedemPointScreen = {navController.navigate(Screen.Reedem.route)}
+                    navigateBack = { navController.navigateUp() },
+                    navigateToRedeemPointScreen = { navController.navigate(Screen.Reedem.route) },
+                    navigateToTimerScreen = { durationText ->
+                        navController.navigate(Screen.Timer.createRoute(durationText = durationText))
+                    }
                 )
             }
             composable(Screen.Spinner.route) {
@@ -127,11 +129,28 @@ fun App(
                     navigateBack = {navController.navigateUp()},
                 )
             }
-            composable(Screen.Reedem.route){
+            composable(Screen.Reedem.route) {
                 ReedemPointScreen(
-                    navigateBack = {navController.navigateUp()},
-                    navigateToDetailCheckoutScreen = {navController.navigate(Screen.Checkout.route)}
+                    navigateBack = { navController.navigateUp() },
+                    navigateToDetailCheckoutScreen = { navController.navigate(Screen.Checkout.route) }
                 )
+            }
+            composable(
+                Screen.Timer.route,
+                arguments = listOf(
+                    navArgument("durationText") { type = NavType.StringType },
+                )
+            ) {backStackEntry ->
+                val durationText = backStackEntry.arguments?.getString("durationText")
+                TimerScreen(
+                    timerState = timerState,
+                    timerActions = timerViewModel,
+                    timeText = durationText ?: "00:00:00",
+                    navigateToBadgeScreen = { navController.navigate(Screen.Badge.route) }
+                )
+            }
+            composable(Screen.Badge.route) {
+                BadgeScreen()
             }
         }
     }

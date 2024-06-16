@@ -15,7 +15,10 @@ sealed class Screen(val route: String) {
 
     data object Reedem : Screen("reedem")
 
-    data object Timer : Screen("timer")
+    data object Timer : Screen("timer/{durationText}") {
+        fun createRoute(durationText: String) =
+            "timer/$durationText"
+    }
 
     data object Spinner : Screen("spinner")
 

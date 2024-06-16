@@ -50,6 +50,16 @@ android {
 }
 
 dependencies {
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.4.3")
+    implementation("androidx.compose.material:material-icons-extended:1.4.3")
+    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
+    implementation("com.github.Zhuinden:flow-combinetuple-kt:1.1.1")
+
+    implementation(platform("io.insert-koin:koin-bom:3.5.6"))
+    implementation("io.insert-koin:koin-androidx-compose")
+
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
     implementation("com.github.commandiron:SpinWheelCompose:1.1.1")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.1")

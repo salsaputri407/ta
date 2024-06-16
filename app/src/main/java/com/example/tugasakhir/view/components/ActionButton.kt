@@ -1,6 +1,5 @@
 package com.example.tugasakhir.view.components
 
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -22,13 +21,14 @@ fun ActionButton(
     text: String,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    enabled: Boolean = true
 ){
     Button(
-        onClick = onClick,
+        modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
         colors = ButtonDefaults.buttonColors(BlueColor500),
-        modifier = modifier
-            .fillMaxWidth()
+        onClick = onClick,
+        enabled = enabled
     ) {
         Text(
             text = text,
@@ -41,7 +41,7 @@ fun ActionButton(
 }
 
 @Composable
-@Preview()
+@Preview
 fun ActionButtonPreview() {
     TugasAkhirTheme {
         ActionButton(

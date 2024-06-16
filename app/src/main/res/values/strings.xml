@@ -16,9 +16,26 @@
     <string name="detail_pembayaran">Pembayaran</string>
     <string name="button_keranjang">Masuk Keranjang</string>
     <string name="button_bermain">Bermain</string>
+    <string name="button_kembalikan_barang">Kembalikan Barang</string>
     <string name="button_spinner">Spin</string>
     <string name="button_point">Tukar</string>
     <string name="button_full_history">Sewa</string>
     <string name="button_history_1">Point</string>
     <string name="required_point">%d</string>
+    <string name="is_done">is_done</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="resume">Resume</string>
+    <string name="reset">Reset</string>
+    <string name="cancel">Cancel</string>
+    <string name="pause">Pause</string>
+    <string name="timer_running_channel_name">Timer running channel</string>
+    <string name="timer_running_channel_description">Shows a persistent notification when the timer is running</string>
+    <string name="timer_completed_channel_name">Timer completed notifications</string>
+    <string name="timer_completed_channel_description">Shows a notification when a countdown timer finishes</string>
+    <string name="notification_permission">Notification permission</string>
+    <string name="notification_permission_text">You need to allow this permission in order for the app to run properly</string>
+    <string name="exact_alarm">Alarms and reminders</string>
+    <string name="exact_alarm_text">Allow setting alarms and reminders</string>
+    <string name="confirm">Confirm</string>
 </resources>

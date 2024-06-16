@@ -34,12 +34,12 @@ import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 
 @Composable
-fun BadgeContent(
-    @DrawableRes image: Int,
-    text: String,
-    information: String,
-    persuasif: String,
-    modifier: Modifier = Modifier
+fun BadgeScreen(
+    modifier: Modifier = Modifier,
+    @DrawableRes image: Int = R.drawable.badge,
+    text: String = "",
+    information: String = "",
+    persuasif: String = "",
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
@@ -136,11 +136,11 @@ fun BadgeContent(
 @Composable
 fun BadgeScreemPreview() {
     TugasAkhirTheme {
-        BadgeContent(
-            R.drawable.badge,
-            "TerimaKasih",
-            "Selamat bergabung! Inilah kali pertama Anda bermain ",
-            "Kami tunggu bermain selanjutnya"
+        BadgeScreen(
+            image = R.drawable.badge,
+            text = "TerimaKasih",
+            information = "Selamat bergabung! Inilah kali pertama Anda bermain ",
+            persuasif = "Kami tunggu bermain selanjutnya"
         )
     }
 }

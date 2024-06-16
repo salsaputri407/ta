@@ -39,7 +39,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
-import com.example.tugasakhir.ui.theme.BabyBlueColor500
 import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
@@ -48,19 +47,19 @@ import com.example.tugasakhir.view.components.DetailCart
 import com.example.tugasakhir.view.components.GetTime
 import com.example.tugasakhir.view.components.SegmentText
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailCheckContent(
     modifier: Modifier = Modifier,
-    navigateToReedemPointScreen: () -> Unit = {},
+    navigateToRedeemPointScreen: () -> Unit,
+    navigateToTimerScreen: (String) -> Unit,
     navigateBack: () -> Unit,
-){
-    Column {
-        TopAppBar(onBackClick = {navigateBack()})
+) {
+    Column(modifier = modifier) {
+        TopAppBar(onBackClick = { navigateBack() })
         Information()
         SegmentText(title = stringResource(id = R.string.screen_barang))
-        Column (
-            modifier= Modifier
+        Column(
+            modifier = Modifier
                 .padding(horizontal = 20.dp)
                 .verticalScroll(rememberScrollState())
                 .weight(1f)
@@ -68,23 +67,30 @@ fun DetailCheckContent(
             DetailCart(
                 image = R.drawable.sepeda1,
                 title = "Sepeda Listrik",
-                type = "Biru" )
-            Spacer(modifier = Modifier
-                .fillMaxWidth()
-                .height(15.dp))
-            GetTime (navigateToReedemPointScreen = navigateToReedemPointScreen)
+                type = "Biru"
+            )
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(15.dp)
+            )
+            GetTime(navigateToReedemPointScreen = navigateToRedeemPointScreen)
         }
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(2.dp)
-            .background(PastelBlueColor500))
-        Column (
-            modifier= Modifier
-            .background(Color.White)
-            .padding(horizontal = 30.dp, vertical = 20.dp)) {
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(2.dp)
+                .background(PastelBlueColor500)
+        )
+        Column(
+            modifier = Modifier
+                .background(Color.White)
+                .padding(horizontal = 30.dp, vertical = 20.dp)
+        ) {
             ActionButton(
                 text = stringResource(id = R.string.button_bermain),
-                onClick = {})
+                onClick = { navigateToTimerScreen("00:15:00") }
+            )
         }
     }
 }
@@ -121,32 +127,35 @@ private fun TopAppBar(
             )
         },
         modifier = modifier
-            .border(2.dp, PastelBlueColor500),)
+            .border(2.dp, PastelBlueColor500),
+    )
 }
 
 @Composable
-fun Information()
-{
-    Column (modifier = Modifier
-        .padding(start = 20.dp,end=20.dp, top=15.dp)) {
-        Column (
+fun Information() {
+    Column(
+        modifier = Modifier
+            .padding(start = 20.dp, end = 20.dp, top = 15.dp)
+    ) {
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(8.dp))
                 .background(Color.White)
                 .padding(20.dp)
-        ){
-            Column (
+        ) {
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 5.dp),
-            ){
+            ) {
                 Text(
                     text = stringResource(id = R.string.detail_time),
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Medium,
                         fontSize = 14.sp,
-                    ))
+                    )
+                )
                 Text(
                     text = stringResource(id = R.string.detail_give_time),
                     style = MaterialTheme.typography.titleMedium.copy(
@@ -154,29 +163,38 @@ fun Information()
                         fontWeight = FontWeight.Medium,
                         fontSize = 14.sp,
                     ),
-                    modifier= Modifier
-                        .padding(top = 5.dp))
+                    modifier = Modifier
+                        .padding(top = 5.dp)
+                )
             }
-            Column (
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 5.dp)) {
+                    .padding(top = 5.dp)
+            ) {
                 Text(
                     text = stringResource(id = R.string.detail_pembayaran),
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Medium,
                         fontSize = 14.sp,
-                    ))
-                Row (
+                    )
+                )
+                Row(
                     horizontalArrangement = Arrangement.spacedBy(15.dp),
                     modifier = Modifier
-                        .padding(top= 5.dp)
+                        .padding(top = 5.dp)
                 ) {
                     var selectedbutton1 by remember { mutableStateOf(false) }
                     var selectedbutton2 by remember { mutableStateOf(false) }
                     Button(
-                        onClick = { selectedbutton1 = !selectedbutton1 },
-                        border = if (selectedbutton1) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, PastelBlueColor500),
+                        onClick = {
+                            selectedbutton1 = !selectedbutton1
+                            selectedbutton2 = false
+                        },
+                        border = if (selectedbutton1) BorderStroke(
+                            2.dp,
+                            BlueColor500
+                        ) else BorderStroke(2.dp, PastelBlueColor500),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = if (selectedbutton1) PastelBlueColor500 else Color.White,
@@ -189,8 +207,14 @@ fun Information()
                         Text(text = "Awal")
                     }
                     Button(
-                        onClick = { selectedbutton2 = !selectedbutton2 },
-                        border = if (selectedbutton2) BorderStroke(2.dp, BlueColor500) else BorderStroke(2.dp, PastelBlueColor500),
+                        onClick = {
+                            selectedbutton2 = !selectedbutton2
+                            selectedbutton1 = false
+                        },
+                        border = if (selectedbutton2) BorderStroke(
+                            2.dp,
+                            BlueColor500
+                        ) else BorderStroke(2.dp, PastelBlueColor500),
                         shape = RoundedCornerShape(8.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = if (selectedbutton2) PastelBlueColor500 else Color.White,
@@ -198,7 +222,8 @@ fun Information()
                         ),
                         modifier = Modifier
                             .wrapContentSize()
-                            .height(35.dp)) {
+                            .height(35.dp)
+                    ) {
                         Text(text = "Akhir")
 
                     }
@@ -207,12 +232,15 @@ fun Information()
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun DetailCheckoutScreenPreview() {
     TugasAkhirTheme {
         DetailCheckContent(
             navigateBack = {},
-            navigateToReedemPointScreen = {})
+            navigateToRedeemPointScreen = {},
+            navigateToTimerScreen = {}
+        )
     }
 }

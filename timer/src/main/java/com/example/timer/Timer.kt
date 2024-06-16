@@ -6,12 +6,9 @@ import android.view.Window
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.luminance
@@ -19,14 +16,13 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.timer.ui.theme.TugasAkhirTheme
-import com.example.timer.view.TimerView
+import com.example.timer.view.TimerScreen
 
 class Timer : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TugasAkhirTheme {
-                TransparentStatusBar(windows = window)
                 TimerApp()
             }
         }
@@ -38,7 +34,7 @@ fun TimerApp() {
     Column (modifier = Modifier
         .padding(16.dp)
         .fillMaxWidth()){
-        TimerView()
+        TimerScreen()
     }
 }
 

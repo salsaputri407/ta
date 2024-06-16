@@ -13,8 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.timer.ui.theme.TugasAkhirTheme
 import com.example.timer.utils.Utility
 import com.example.timer.utils.Utility.formatTime
 import com.example.timer.view.component.TimerButton
@@ -23,7 +25,7 @@ import com.example.timer.viewModel.MainViewModel
 
 @JvmOverloads
 @Composable
-fun TimerView(
+fun TimerScreen(
     viewModel: MainViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
 
     val time by viewModel.time.observeAsState(Utility.TIME_COUNTDOWN.formatTime())
@@ -40,7 +42,7 @@ fun TimerView(
     time: String,
     progress: Float,
     isPlaying: Boolean,
-    optionSelected: () -> Unit
+    optionSelected: () -> Unit = {}
 ){
     Column (
         modifier = Modifier
@@ -76,6 +78,16 @@ fun TimerView(
         ) {
             optionSelected()
         }
+    }
+}
 
+@Preview(showBackground = true)
+@Composable
+private fun TimeViewPreview() {
+    TugasAkhirTheme {
+        TimerView(
+            time = Utility.TIME_COUNTDOWN.formatTime(),
+            progress = 1.00F,
+            isPlaying = false)
     }
 }
