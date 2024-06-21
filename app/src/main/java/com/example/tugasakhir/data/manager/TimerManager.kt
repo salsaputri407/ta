@@ -17,7 +17,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class TimerManager(private val workRequestManager: WorkRequestManager) {
     private val timeInMillisFlow = MutableStateFlow(0L)
-    private val timeTextFlow = MutableStateFlow("00:15:00")
+    private val timeTextFlow = MutableStateFlow("00:00:15")
     private val hourFlow = MutableStateFlow(0)
     private val minuteFlow = MutableStateFlow(0)
     private val secondFlow = MutableStateFlow(0)

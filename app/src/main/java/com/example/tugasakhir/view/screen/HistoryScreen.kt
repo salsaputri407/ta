@@ -174,7 +174,7 @@ fun HistoryPointContent(
             letterSpacing = 0.25.sp,
             text = buildAnnotatedString {
                 append("Tukar point")
-                withStyle(style = SpanStyle(GreenColor500)  ){append("100")}},
+                withStyle(style = SpanStyle(BlueColor500)  ){append("100")}},
             style = MaterialTheme.typography.titleMedium.copy(
                 color = Color.Black,
                 fontWeight = FontWeight.Medium,

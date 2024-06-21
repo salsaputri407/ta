@@ -89,7 +89,7 @@ fun DetailCheckContent(
         ) {
             ActionButton(
                 text = stringResource(id = R.string.button_bermain),
-                onClick = { navigateToTimerScreen("00:15:00") }
+                onClick = { navigateToTimerScreen("00:00:15") }
             )
         }
     }

@@ -21,12 +21,13 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.tugasakhir.ui.theme.BlueColor500
 
 @Composable
 fun CircularProgressIndicator(
     progress: Float,
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colorScheme.primary,
+    color: Color = BlueColor500,
     strokeWidth: Dp = ProgressIndicatorDefaults.CircularStrokeWidth,
 ) {
     val stroke = with(LocalDensity.current) {

@@ -1,15 +1,21 @@
 package com.example.tugasakhir.view.screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -33,7 +39,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,6 +54,8 @@ import com.example.tugasakhir.view.components.ActionButton
 import com.example.tugasakhir.view.components.ItemCart
 import com.example.tugasakhir.model.Barang
 import com.example.tugasakhir.model.Order
+import com.example.tugasakhir.ui.theme.GrayLight500
+import com.example.tugasakhir.ui.theme.GreenColor500
 import com.example.tugasakhir.ui.theme.PastelBlueColor500
 
 @Composable
@@ -54,6 +64,10 @@ fun CartItemScreen(
     navigateToDetailCheckoutScreen: () -> Unit = {},
     navigateBack: () -> Unit,
 ) {
+
+    var showInfoItem by remember { mutableStateOf(false) }
+    var selected by remember { mutableStateOf(false) }
+
     Column(modifier = modifier) {
         TopAppBar(onBackClick = {navigateBack()})
         Column(
@@ -62,7 +76,9 @@ fun CartItemScreen(
                 .verticalScroll(rememberScrollState())
                 .weight(1f)
         ) {
-            CartItemContent()
+            CartItemContent(
+                showInfoItem = { showInfoItem = !showInfoItem }
+            )
         }
         Spacer(
             modifier = Modifier
@@ -70,6 +86,9 @@ fun CartItemScreen(
                 .height(2.dp)
                 .background(PastelBlueColor500)
         )
+        if (showInfoItem) {
+            InfoItem(showInfoItem = {showInfoItem = !showInfoItem}, text = "1 Item Terpilih")
+        }
         Column(
             modifier = Modifier
                 .background(Color.White)
@@ -85,6 +104,7 @@ fun CartItemScreen(
 
 @Composable
 fun CartItemContent(
+    showInfoItem: (Boolean) -> Unit = {}
 ) {
 //    LazyColumn(
 //        contentPadding = PaddingValues(16.dp),
@@ -101,7 +121,7 @@ fun CartItemContent(
         image = R.drawable.sepeda1,
         title = "Sepeda Listrik",
         type = "Biru",
-        onClick = {selected = !selected} )
+        onClick = {selected = !selected; showInfoItem(!selected)} )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -137,6 +157,38 @@ private fun TopAppBar(
         modifier = modifier
             .border(2.dp, PastelBlueColor500),
         )
+}
+
+@Composable
+fun InfoItem(
+    modifier: Modifier = Modifier,
+    text: String,
+    showInfoItem: (Boolean) -> Unit = {}
+) {
+    Row (
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .background(color = PastelBlueColor500)
+            .padding(18.dp)
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.titleMedium.copy(
+                color = BlueColor500,
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 15.sp,
+            ))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun InfoItemPreview() {
+    TugasAkhirTheme {
+        InfoItem(text = "1 Item Terpilih")
+    }
 }
 
 @Preview(showBackground = true)

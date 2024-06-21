@@ -11,14 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import com.example.tugasakhir.ui.theme.BlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 
 @Composable
 fun BackgroundIndicator(
     progress: Float,
     modifier: Modifier = Modifier,
-    foregroundColor: Color = MaterialTheme.colorScheme.primary,
-    backgroundColor: Color = MaterialTheme.colorScheme.primary.copy(alpha = .25f),
+    foregroundColor: Color = BlueColor500,
+    backgroundColor: Color = BlueColor500.copy(alpha = .25f),
     strokeWidth: Dp = ProgressIndicatorDefaults.CircularStrokeWidth,
 ) {
     Box(modifier) {

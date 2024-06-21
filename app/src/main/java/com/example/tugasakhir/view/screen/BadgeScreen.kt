@@ -25,22 +25,27 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tugasakhir.R
 import com.example.tugasakhir.ui.theme.BlueColor500
+import com.example.tugasakhir.ui.theme.GrayLight500
+import com.example.tugasakhir.ui.theme.PastelBlueColor500
 import com.example.tugasakhir.ui.theme.TugasAkhirTheme
 
 @Composable
 fun BadgeScreen(
     modifier: Modifier = Modifier,
-    @DrawableRes image: Int = R.drawable.badge,
-    text: String = "",
-    information: String = "",
-    persuasif: String = "",
+    onButtonClicked: (String) -> Unit,
+    navigateToHomeScreen: () -> Unit = {},
 ) {
+
+    val shareMessage = stringResource(id = R.string.share_message)
+
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -57,51 +62,51 @@ fun BadgeScreen(
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(8.dp))
-                    .background(MaterialTheme.colorScheme.background)
                     .align(Alignment.CenterHorizontally)
                     .padding(20.dp)
             ) {
                 Image(
-                    painter = painterResource(id = image),
+                    painter = painterResource(id = R.drawable.badge),
                     contentDescription = "image_detail_of_item",
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.Fit,
                     modifier = Modifier
                         .height(245.dp)
                 )
             }
             Text(
-                text = text,
+                text = "Terima kasih",
                 style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 18.sp,)
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp,)
             )
             Text(
-                text = information,
+                text = "Selamat bergabung! Inilah kali pertama Anda bermain Kami tunggu bermain selanjutnya",
+                textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 14.sp,)
-            )
-            Text(
-                text = persuasif,
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 14.sp,)
+                    color = GrayLight500,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium,),
+                modifier = Modifier.padding(horizontal = 45.dp, vertical = 10.dp)
             )
         }
-        Spacer(modifier = Modifier
-            .fillMaxWidth()
-            .height(2.dp)
-            .background(Color.LightGray))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(2.dp)
+                .background(PastelBlueColor500)
+        )
 
         Column (
-            modifier= Modifier.padding(horizontal = 30.dp, vertical = 20.dp)
+            modifier = Modifier
+                .background(Color.White)
+                .padding(horizontal = 30.dp, vertical = 20.dp)
         ){
             Row (
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(45.dp),
             ){
                 Button(
-                    onClick = {},
+                    onClick = {onButtonClicked(shareMessage)},
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = BlueColor500,
@@ -111,10 +116,10 @@ fun BadgeScreen(
                 { Text(
                     text = "Bagikan",
                     style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 24.sp,)) }
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,)) }
                 Button(
-                    onClick = {},
+                    onClick = {navigateToHomeScreen()},
                     border = BorderStroke(2.dp, BlueColor500),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -125,8 +130,8 @@ fun BadgeScreen(
                 { Text(
                     text = "Home",
                     style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 24.sp,)) }
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,)) }
             }
         }
     }
@@ -136,11 +141,6 @@ fun BadgeScreen(
 @Composable
 fun BadgeScreemPreview() {
     TugasAkhirTheme {
-        BadgeScreen(
-            image = R.drawable.badge,
-            text = "TerimaKasih",
-            information = "Selamat bergabung! Inilah kali pertama Anda bermain ",
-            persuasif = "Kami tunggu bermain selanjutnya"
-        )
+        BadgeScreen(onButtonClicked = {})
     }
 }
